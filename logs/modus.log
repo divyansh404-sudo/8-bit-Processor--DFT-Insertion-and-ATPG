@@ -1,0 +1,1763 @@
+
+ 
+Copyright (C) 2002-2020 Cadence Design Systems Inc. All Rights Reserved. 
+Cadence and the Cadence logo are registered trademarks and Modus is a trademark 
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+Type 'help legal_notices' for third party license notices. 
+Version : 20.12-s002_1, built Feb 26 2021 (linux26_64)
+Options : 
+Date    : Thu, April 16 12:08:53 2026
+Host    : vlsi-3.iiitk.ac.in (x86_64 Linux 3.10.0-1160.el7.x86_64) (6*Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz 12288KB)
+OS      : Red Hat Enterprise Linux Server release 7.9 (Maipo)
+@modus:root:/ 1> source run_modus_atpg.tcl
+#@ Begin verbose source run_modus_atpg.tcl
+@file(run_modus_atpg.tcl) 1: puts "\n============================================="
+
+=============================================
+@file(run_modus_atpg.tcl) 2: puts "Starting Modus Test Run Script for processor"
+Starting Modus Test Run Script for processor
+@file(run_modus_atpg.tcl) 3: puts "=============================================\n"
+=============================================
+
+@file(run_modus_atpg.tcl) 5: set WORKDIR ./
+@file(run_modus_atpg.tcl) 6: set CELL processor
+@file(run_modus_atpg.tcl) 9: set RESULTS_DIR $WORKDIR/results
+@file(run_modus_atpg.tcl) 10: puts ">>> Creating results directory at $RESULTS_DIR"
+>>> Creating results directory at .//results
+@file(run_modus_atpg.tcl) 11: file mkdir $RESULTS_DIR
+@file(run_modus_atpg.tcl) 14: set NETLIST $WORKDIR/processor_post_dft.v
+@file(run_modus_atpg.tcl) 17: puts ">>> Setting 90nm Library Models..."
+>>> Setting 90nm Library Models...
+@file(run_modus_atpg.tcl) 18: set LIBRARY "/home/install/FOUNDRY/digital/90nm/dig/lib/slow.v"
+@file(run_modus_atpg.tcl) 21: set TESTMODE FULLSCAN
+@file(run_modus_atpg.tcl) 24: set ASSIGNFILE ""
+@file(run_modus_atpg.tcl) 25: set MODEDEF ""
+@file(run_modus_atpg.tcl) 26: catch {
+    set ASSIGNFILE [exec bash -c "find $WORKDIR -type f -name \"*.pinassign\" | head -n 1"]
+    set MODEDEF [exec bash -c "find $WORKDIR -type f -name \"*.modedef\" | head -n 1"]
+}
+@file(run_modus_atpg.tcl) 32: set do_build_model 1;
+@file(run_modus_atpg.tcl) 33: set do_fault_model 1;
+@file(run_modus_atpg.tcl) 34: set do_build_testmode_FULLSCAN 1;
+@file(run_modus_atpg.tcl) 35: set do_report_test_structures_FULLSCAN 1;
+@file(run_modus_atpg.tcl) 36: set do_verify_test_structures_FULLSCAN 1;
+@file(run_modus_atpg.tcl) 37: set do_create_atpg_vectors 1;
+@file(run_modus_atpg.tcl) 42: if {$do_build_model} {
+    puts  "Building Test Model"
+    build_model  \
+       -cell $CELL \
+       -workdir $WORKDIR \
+       -designsource $NETLIST \
+       -TECHLIB $LIBRARY \
+       -allowmissingmodules yes 
+}
+Building Test Model
+Starting Command: build_model 
+
+INFO (TDA-015): Log File: .//testresults/logs/log_build_model_041626120916-995941000 [end TDA_015]
+
+INFO (TEI-195): Build Model - Controller starting: [end TEI_195] 
+
+ERROR (TEI-023): Build Model: unable to read file '/home/install/FOUNDRY/digital/90nm/dig/lib/slow.v'. Specify a valid file or path name with proper permissions.  [end TEI_023] 
+
+Search Order  1:  ".//processor_post_dft.v"
+
+
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =              807,168  bytes
+
+                      CPU Time =    0:00:00.00
+                  Elapsed Time =    0:00:00.02                    [end TDA_001]
+
+
+
+INFO (TEI-200): Build Model - Controller completed. [end TEI_200] 
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TEI-195): Build Model - Controller starting:  
+      1 INFO (TEI-200): Build Model - Controller completed.  
+
+  ERROR Messages...
+      1 ERROR (TEI-023): Build Model: unable to read file '/home/install/FOUNDRY/digital/90nm/dig/lib/slow.v'. Specify a valid file or path name with proper permissions.   
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+File 'run_modus_atpg.tcl' line 42: errors out.
+#@ End verbose source run_modus_atpg.tcl
+@modus:root:/ 2> source run_modus_atpg.tcl
+#@ Begin verbose source run_modus_atpg.tcl
+@file(run_modus_atpg.tcl) 1: puts "\n============================================="
+
+=============================================
+@file(run_modus_atpg.tcl) 2: puts "Starting Modus Test Run Script for processor"
+Starting Modus Test Run Script for processor
+@file(run_modus_atpg.tcl) 3: puts "=============================================\n"
+=============================================
+
+@file(run_modus_atpg.tcl) 5: set WORKDIR ./
+@file(run_modus_atpg.tcl) 6: set CELL processor
+@file(run_modus_atpg.tcl) 9: set RESULTS_DIR $WORKDIR/results
+@file(run_modus_atpg.tcl) 10: puts ">>> Creating results directory at $RESULTS_DIR"
+>>> Creating results directory at .//results
+@file(run_modus_atpg.tcl) 11: file mkdir $RESULTS_DIR
+@file(run_modus_atpg.tcl) 14: set NETLIST $WORKDIR/processor_post_dft.v
+@file(run_modus_atpg.tcl) 17: puts ">>> Setting 90nm Library Models..."
+>>> Setting 90nm Library Models...
+@file(run_modus_atpg.tcl) 18: set LIBRARY "/home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v"
+@file(run_modus_atpg.tcl) 21: set TESTMODE FULLSCAN
+@file(run_modus_atpg.tcl) 24: set ASSIGNFILE ""
+@file(run_modus_atpg.tcl) 25: set MODEDEF ""
+@file(run_modus_atpg.tcl) 26: catch {
+    set ASSIGNFILE [exec bash -c "find $WORKDIR -type f -name \"*.pinassign\" | head -n 1"]
+    set MODEDEF [exec bash -c "find $WORKDIR -type f -name \"*.modedef\" | head -n 1"]
+}
+@file(run_modus_atpg.tcl) 34: puts  ">>> Building Test Model"
+>>> Building Test Model
+@file(run_modus_atpg.tcl) 35: build_model  \
+   -cell $CELL \
+   -workdir $WORKDIR \
+   -designsource $NETLIST \
+   -techlib $LIBRARY \
+   -designtop $CELL \
+   -allowmissingmodules yes 
+Starting Command: build_model 
+
+INFO (TDA-015): Log File: .//testresults/logs/log_build_model_041626121508-273313000 [end TDA_015]
+
+INFO (TEI-195): Build Model - Controller starting: [end TEI_195] 
+
+
+Search Order  1:  ".//processor_post_dft.v"
+Search Order  2:  "/home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v"
+
+
+
+Reading Verilog data from .//processor_post_dft.v
+
+Verilog Parser complete - 1 modules, 0 gates, 0 user defined primitives.
+
+
+Reading Verilog data from /home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v
+
+Verilog Parser complete - 480 modules, 1855 gates, 3 user defined primitives.
+
+
+
+INFO (TEI-196): Build Model - Hierarchical Model Build starting: [end TEI_196] 
+
+WARNING (TEI-110): Pin 'NOTIFIER' of 'cell udp_dff' has no external net connection for any usage in the design. Cell contents file: '/home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v'.  [end TEI_110] 
+
+
+Number of blocks in the hierarchical model is: 11,991.
+
+Number of technology library cell instances in the hierarchical model is: 1,537.
+
+
+INFO (TEI-197): Build Model - Hierarchical Model Build completed. [end TEI_197] 
+
+
+
+INFO (TEI-198): Build Model - Flat Model Build starting: [end TEI_198] 
+
+ defaultTIE = X
+ defaultDFN = T
+
+
+INFO (TLM-055): Design Summary
+                --------------
+
+Hierarchical Model:                  Flattened Model:
+         11,991  Blocks                       8,372  Blocks
+         38,428  Pins                         8,372  Nodes
+         21,721  Nets
+
+Primary Inputs:                      Primary Outputs:
+          5  Input Only                        15  Output Only
+          0  Input/Output                       0  Input/Output
+          5  Total Inputs                      15  Total Outputs
+
+Tied Nets:                           Dotted Nets:
+        564  Tied to 0                          0  Two-State
+        296  Tied to 1                          0  Three-State
+          0  Tied to X                          0  Total Dotted Nets
+        860  Total Tied Nets
+
+Selected Primitive Functions:
+          0  Clock Chopper (CHOP) primitives 
+          0  RAMs
+          0  ROMs
+          0  TSDs
+          0  Resistors
+          0  Transistors
+        566  MUX2s
+          0  Latches
+
+
+        296  Rising  Edge Flop w/Set-Dominant and Reset Port
+        296  Total Flops
+
+      1,537  Technology Library Cell Instances
+
+[end TLM_055] 
+Optimization removed logic for 4 of 47 cells in this design.
+
+Optimization removed a total of 28 tied Latch Ports.
+Optimization removed a total of 310 non-controlling inputs.
+Optimization removed a total of 958 dangling logic nodes.
+
+
+
+INFO (TEI-199): Build Model - Flat Model Build completed.  [end TEI_199] 
+
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =          102,580,192  bytes
+
+                      CPU Time =    0:00:00.67
+                  Elapsed Time =    0:00:01.35                    [end TDA_001]
+
+
+
+INFO (TEI-200): Build Model - Controller completed. [end TEI_200] 
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TEI-195): Build Model - Controller starting:  
+      1 INFO (TEI-196): Build Model - Hierarchical Model Build starting:  
+      1 INFO (TEI-197): Build Model - Hierarchical Model Build completed.  
+      1 INFO (TEI-198): Build Model - Flat Model Build starting:  
+      1 INFO (TEI-199): Build Model - Flat Model Build completed.   
+      1 INFO (TEI-200): Build Model - Controller completed.  
+      1 INFO (TLM-055): Design Summary
+
+  WARNING Messages...
+      1 WARNING (TEI-110): Pin 'NOTIFIER' of 'cell udp_dff' has no external net connection for any usage in the design. Cell contents file: '/home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v'.   
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 46: puts ">>> Building Test Mode $TESTMODE"
+>>> Building Test Mode FULLSCAN
+@file(run_modus_atpg.tcl) 47: if {$MODEDEF ne ""} {
+    build_testmode -workdir $WORKDIR -testmode $TESTMODE -modedef $MODEDEF -assignfile $ASSIGNFILE 
+} else {
+    build_testmode -workdir $WORKDIR -testmode $TESTMODE -assignfile $ASSIGNFILE 
+}
+Starting Command: build_testmode 
+
+INFO (TDA-015): Log File: .//testresults/logs/log_build_testmode_FULLSCAN_041626121512-873409000 [end TDA_015]
+
+MODEDEFPATH set to:  /home/install/MODUS201/tools.lnx86/tb/defaults/rules/modedef 
+TDRPATH set to: /home/install/MODUS201/tools.lnx86/tb/defaults/rules/tdr 
+
+Modus Build Test Mode(s) beginning...
+
+   TDR NAME      =  dummy.tdr 
+
+   SCAN_TYPE     =  GSD 
+   BOUNDARY      =  NONE 
+   IN            =  PI 
+   OUT           =  PO 
+
+INFO (TTM-391): A default modeinit sequence will be generated.   [end TTM_391] 
+INFO (TTM-387): A default scanop sequence will be generated.   [end TTM_387] 
+INFO (THM-814): Testmode contains 96.62% active logic,  3.38% inactive logic and  0.00% constraint logic.   [end THM_814] 
+INFO (TTM-357): There are 1 scan chains which are controllable and observable.   [end TTM_357] 
+
+There are no PPIs for Test Mode:  FULLSCAN
+
+Information for Test Mode:  FULLSCAN
+-------------------------
+
+         Scan Type = GSD
+
+
+ Latch Summary for Test Mode:  FULLSCAN
+ Latch Type                #Active   #Inactive       Total
+ ---------------------   ---------   ---------   ---------
+ Test Constraint (TC)            0           0           0 
+ Scan Enable     (SE)            0           0           0 
+ Fixed Value     (FV)            0           0           0 
+ Floating                        0           0           0 
+ Finite State    (FSM)           0           0           0 
+
+INFO (TTM-800): build_testmode has created mode FULLSCAN. [end TTM_800] 
+
+Test Function Pin Information for Test Mode:  FULLSCAN
+-------------------------------------------
+
+          2  SC    (System  Clock)             Pins
+          0  PC    (P Shift Clock)             Pins
+          1  EC    (E Shift Clock)             Pins
+
+          0  OSC   (Oscillator)                Pins
+
+          0  TI    (Test Inhibit)              Pins
+          1  SE    (Scan Enable)               Pins
+          0  CI    (Clock Isolation)           Pins
+          0  OI    (Output Inhibit)            Pins
+
+          1  SI    (Scan Input)                Pins
+          1  SO    (Scan Output)               Pins
+
+  Pin Index    Type Test Function                         Pin Name / Net Name
+  ---------    ---- ----------------------------------    -------------------
+          1      PI  -SC                                  reset / reset
+          0      PI  -EC  -SC                             clk / clk
+          2      PI  +SE                                  scan_en / scan_en
+          3      PI   SI                                  scan_in / scan_in
+         19      PO   SO                                  scan_out / scan_out
+
+
+            Cumulative Time in hours:minutes:seconds:
+                   CPU Time =   0:00:00.10
+               Elapsed Time =   0:00:02.49
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (THM-814): Testmode contains 96.62% active logic,  3.38% inactive logic and  0.00% constraint logic.    
+      1 INFO (TTM-357): There are 1 scan chains which are controllable and observable.    
+      1 INFO (TTM-387): A default scanop sequence will be generated.    
+      1 INFO (TTM-391): A default modeinit sequence will be generated.    
+      1 INFO (TTM-800): build_testmode has created mode FULLSCAN.  
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 56: puts ">>> Verifying Test Structures..."
+>>> Verifying Test Structures...
+@file(run_modus_atpg.tcl) 57: verify_test_structures -workdir $WORKDIR -testmode $TESTMODE > $RESULTS_DIR/verify_structures.rpt
+@file(run_modus_atpg.tcl) 59: puts ">>> Reporting Test Structures..."
+>>> Reporting Test Structures...
+@file(run_modus_atpg.tcl) 60: report_test_structures -workdir $WORKDIR -testmode $TESTMODE > $RESULTS_DIR/test_structures.rpt
+@file(run_modus_atpg.tcl) 65: puts ">>> Building Test Fault Model..."
+>>> Building Test Fault Model...
+@file(run_modus_atpg.tcl) 66: build_faultmodel -fullfault yes
+INFO (TUI-772): The command 'build_faultmodel' will release the currently acquired resources. Please set the context and circuit state after completion of the command. [end TUI_772] 
+
+Starting Command: build_faultmodel 
+
+INFO (TDA-015): Log File: ./testresults/logs/log_build_faultmodel_041626121526-139449000 [end TDA_015]
+
+INFO (TFM-099): Build Fault Model started.  [end TFM_099] 
+INFO (TFM-102): Creating faultModel file ./tbdata/faultModel.  [end TFM_102] 
+
+Global Ignored Static Fault Count               566
+Global Ignored Dynamic Fault Count             1130
+
+
+                            Global Statistics
+
+                    ATCov  ----------------------- Global Faults --------------------------
+                   Global        Total       Tested     Possibly    Redundant     Untested
+
+Total Static         0.00        18338            0            0            0        18338
+Collapsed Static     0.00        11396            0            0            0        11396
+PI Static            0.00            8            0            0            0            8
+PO Static            0.00           30            0            0            0           30
+
+Total Dynamic        0.00        22216            0            0            0        22216
+Collapsed Dynamic    0.00        14346            0            0            0        14346
+PI Dynamic           0.00            8            0            0            0            8
+PO Dynamic           0.00           30            0            0            0           30
+
+Parametric        
+
+IDDq                 0.00        18338            0                                  18338
+
+
+
+INFO (TFM-103): Creating faultStatus file ./tbdata/faultStatus.  [end TFM_103] 
+
+                           Testmode Statistics: FULLSCAN
+
+                 ---- ATCov ---- ------------------------ Testmode Faults ----------------------- ------------------------- Global Faults ------------------------
+                 Testmode Global        Total       Tested     Possibly    Redundant     Untested        Total       Tested     Possibly    Redundant     Untested
+
+Total Static         0.00   0.00        18338            0            0            0        18338        18338            0            0            0        18338
+Collapsed Static     0.00   0.00        11396            0            0            0        11396        11396            0            0            0        11396
+PI Static            0.00   0.00            8            0            0            0            8            8            0            0            0            8
+PO Static            0.00   0.00           30            0            0            0           30           30            0            0            0           30
+
+Total Dynamic        0.00   0.00        20396            0            0            0        20396        22216            0            0            0        22216
+Collapsed Dynamic    0.00   0.00        13118            0            0            0        13118        14346            0            0            0        14346
+PI Dynamic           0.00   0.00            4            0            0            0            4            8            0            0            0            8
+PO Dynamic           0.00   0.00           30            0            0            0           30           30            0            0            0           30
+
+Parametric        
+
+IDDq                 0.00   0.00        18338            0                                  18338        18338            0                                  18338
+
+Path                 0.00   0.00            0            0                                      0            0            0                                      0
+
+
+
+INFO (TFM-704): Maximum Global Test Coverage Statistics: 
+
+                  %Active      #Faults      #Active    #Inactive
+Total Static       100.00        18338        18338            0
+Collapsed Static   100.00        11396        11396            0
+PI Static          100.00            8            8            0
+PO Static          100.00           30           30            0
+
+Total Dynamic       91.81        22216        20396         1820
+Collapsed Dynamic   91.44        14346        13118         1228
+PI Dynamic          50.00            8            4            4
+PO Dynamic         100.00           30           30            0
+
+Parametric        
+
+There are 1 test mode(s) defined:
+      FULLSCAN
+
+[end TFM_704]
+INFO (TFM-109): Build Fault Model has completed with highest level severity message of INFO.  [end TFM_109] 
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =           12,081,904  bytes
+
+                      CPU Time =    0:00:00.03
+                  Elapsed Time =    0:00:00.14                    [end TDA_001]
+
+     Date Ended:  Thursday Apr 16 12:15:27 2026  IST
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TFM-099): Build Fault Model started.   
+      1 INFO (TFM-102): Creating faultModel file ./tbdata/faultModel.   
+      1 INFO (TFM-103): Creating faultStatus file ./tbdata/faultStatus.   
+      1 INFO (TFM-109): Build Fault Model has completed with highest level severity message of INFO.   
+      1 INFO (TFM-704): Maximum Global Test Coverage Statistics: 
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 71: puts ">>> Generating Scan Chain Tests..."
+>>> Generating Scan Chain Tests...
+@file(run_modus_atpg.tcl) 72: create_scanchain_tests -testmode $TESTMODE -experiment scan
+Starting Command: create_scanchain_tests 
+
+INFO (TDA-015): Log File: ./testresults/logs/log_create_scanchain_tests_FULLSCAN_scan_041626121528-806231000 [end TDA_015]
+
+
+
+****************************************************************************************************
+Coverage Definitions:
+ #Faults  : Number of Active Faults (observable).
+ #Tested  : Number of Active Faults marked tested.
+ #Possibly: Number of Active Faults marked possibly tested
+            (good value is 0 or 1; fault value is X).
+ #Redund  : Number of Active Faults untestable due to redundancy.
+ #Untested: Number of Active Faults untested.
+ %TCov  (%Test Coverage)                      : #Tested / #Faults
+ %ATCov (%Adjusted TCov)                      : #Tested / (#Faults-#Redund)
+****************************************************************************************************
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338            0            0            0        18338   0.00   0.00
+Total Dynamic                20396            0            0            0        20396   0.00   0.00
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338            0            0            0        18338   0.00   0.00
+Total Dynamic                22216            0            0            0        22216   0.00   0.00
+****************************************************************************************************
+
+*************************************************************************************************************
+INFO (TTC-110): Starting Scan Test generation                                                   [end TTC_110] 
+
+INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -  [end TDA_220] 
+INFO (TDA-220):    Sim.    Eff.  Detected    Tmode    Global     Untested                       [end TDA_220] 
+INFO (TDA-220):      1       1       6499    35.44%   35.44%        11839           00:01.16    [end TDA_220] 
+INFO (TTC-110): Ending Scan Test generation                                                     [end TTC_110] 
+*************************************************************************************************************
+
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338         6503            0            0        11835  35.46  35.46
+Total Dynamic                20396         4150            0            0        16246  20.35  20.35
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338         6503            0            0        11835  35.46  35.46
+Total Dynamic                22216         4150            0            0        18066  18.68  18.68
+****************************************************************************************************
+
+
+              ----Final Pattern Statistics----
+
+ Test Section Type                       # Test Sequences
+----------------------------------------------------------
+ Scan                                           1
+----------------------------------------------------------
+ Total                                          1
+
+(I) File(s) generated (bytes and name):
+
+          90112 ./tbdata/faultStatus.FULLSCAN.scan
+           4076 ./tbdata/TBDbin.FULLSCAN.scan
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =            7,858,928  bytes
+
+                      CPU Time =    0:00:00.06
+                  Elapsed Time =    0:00:01.36                    [end TDA_001]
+
+     Date Ended:  Thursday Apr 16 12:15:30 2026  IST
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      3 INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -   
+      2 INFO (TTC-110): Starting Scan Test generation                                                    
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 74: puts ">>> Generating Logic Tests..."
+>>> Generating Logic Tests...
+@file(run_modus_atpg.tcl) 75: create_logic_tests -testmode $TESTMODE -experiment logic
+Starting Command: create_logic_tests 
+
+INFO (TDA-015): Log File: ./testresults/logs/log_create_logic_tests_FULLSCAN_logic_041626121531-381391000 [end TDA_015]
+
+
+
+****************************************************************************************************
+Coverage Definitions:
+ #Faults  : Number of Active Faults (observable).
+ #Tested  : Number of Active Faults marked tested.
+ #Possibly: Number of Active Faults marked possibly tested
+            (good value is 0 or 1; fault value is X).
+ #Redund  : Number of Active Faults untestable due to redundancy.
+ #Untested: Number of Active Faults untested.
+ %TCov  (%Test Coverage)                      : #Tested / #Faults
+ %ATCov (%Adjusted TCov)                      : #Tested / (#Faults-#Redund)
+****************************************************************************************************
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338            0            0            0        18338   0.00   0.00
+Total Dynamic                20396            0            0            0        20396   0.00   0.00
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338            0            0            0        18338   0.00   0.00
+Total Dynamic                22216            0            0            0        22216   0.00   0.00
+****************************************************************************************************
+
+*************************************************************************************************************
+INFO (TTC-110): Starting Scan Test generation                                                   [end TTC_110] 
+
+INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -  [end TDA_220] 
+INFO (TDA-220):    Sim.    Eff.  Detected    Tmode    Global     Untested                       [end TDA_220] 
+INFO (TDA-220):      1       1       6499    35.44%   35.44%        11839           00:00.92    [end TDA_220] 
+INFO (TTC-110): Ending Scan Test generation                                                     [end TTC_110] 
+*************************************************************************************************************
+
+*************************************************************************************************************
+INFO (TTC-110): Starting Reset/Set Test Generation                                              [end TTC_110] 
+
+INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -  [end TDA_220] 
+INFO (TDA-220):    Sim.    Eff.  Detected    Tmode    Global     Untested                       [end TDA_220] 
+INFO (TDA-220):      1       1        566    38.53%   38.53%        11273           00:00.94    [end TDA_220] 
+INFO (TDA-220):      2       2         28    38.68%   38.68%        11245           00:00.94    [end TDA_220] 
+INFO (TTC-110): Ending Reset/Set Test Generation                                                [end TTC_110] 
+*************************************************************************************************************
+
+*************************************************************************************************************
+INFO (TTC-110): Starting Static Logic Test generation                                           [end TTC_110] 
+
+INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -  [end TDA_220] 
+INFO (TDA-220):    Sim.    Eff.  Detected    Tmode    Global     Untested                       [end TDA_220] 
+INFO (TDA-220):     16      16       5820    70.42%   70.42%         5425           00:01.18    [end TDA_220] 
+INFO (TDA-220):     32      32        857    75.09%   75.09%         4568           00:01.22    [end TDA_220] 
+INFO (TDA-220):     48      48        692    78.86%   78.86%         3876           00:01.25    [end TDA_220] 
+INFO (TDA-220):     64      64        404    81.07%   81.07%         3472           00:01.28    [end TDA_220] 
+INFO (TDA-220):     80      80        447    83.50%   83.50%         3025           00:01.30    [end TDA_220] 
+INFO (TDA-220):     96      96        348    85.40%   85.40%         2677           00:01.33    [end TDA_220] 
+INFO (TDA-220):    112     112        373    87.44%   87.44%         2304           00:01.35    [end TDA_220] 
+INFO (TDA-220):    128     128        315    89.15%   89.15%         1989           00:01.37    [end TDA_220] 
+INFO (TDA-220):    144     144        252    90.53%   90.53%         1737           00:01.39    [end TDA_220] 
+INFO (TDA-220):    160     160        226    91.76%   91.76%         1511           00:01.41    [end TDA_220] 
+INFO (TDA-220):    176     176        212    92.92%   92.92%         1299           00:01.43    [end TDA_220] 
+INFO (TDA-220):    192     192        187    93.94%   93.94%         1112           00:01.44    [end TDA_220] 
+INFO (TDA-220):    208     208        220    95.14%   95.14%          892           00:01.46    [end TDA_220] 
+INFO (TDA-220):    224     224        161    96.01%   96.01%          731           00:01.47    [end TDA_220] 
+INFO (TDA-220):    240     240        172    96.95%   96.95%          559           00:01.48    [end TDA_220] 
+INFO (TDA-220):    256     256        178    97.92%   97.92%          381           00:01.50    [end TDA_220] 
+INFO (TDA-220):    272     272        184    98.93%   98.93%          197           00:01.51    [end TDA_220] 
+INFO (TDA-220):    288     288        149    99.74%   99.74%           48           00:01.52    [end TDA_220] 
+INFO (TDA-220):    304     304         37    99.94%   99.94%           11           00:01.53    [end TDA_220] 
+INFO (TDA-221):    304     304          0    99.94%   99.94%           11           00:01.53    [end TDA_221] 
+INFO (TDA-220):    311     311         11    99.99%   99.99%            0           00:01.53    [end TDA_220] 
+INFO (TTC-110): Ending Static Logic Test generation - processing limit reached                  [end TTC_110] 
+*************************************************************************************************************
+
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338        18338            0            0            0 100.00 100.00
+Total Dynamic                20396         4150            0            0        16246  20.35  20.35
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338        18338            0            0            0 100.00 100.00
+Total Dynamic                22216         4150            0            0        18066  18.68  18.68
+****************************************************************************************************
+
+
+              ----Final Pattern Statistics----
+
+ Test Section Type                       # Test Sequences
+----------------------------------------------------------
+ Scan                                           1
+ Logic                                          313
+----------------------------------------------------------
+ Total                                          314
+
+(I) File(s) generated (bytes and name):
+
+         114688 ./tbdata/faultStatus.FULLSCAN.logic
+         430822 ./tbdata/TBDbin.FULLSCAN.logic
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =            9,656,208  bytes
+
+                      CPU Time =    0:00:00.63
+                  Elapsed Time =    0:00:01.73                    [end TDA_001]
+
+     Date Ended:  Thursday Apr 16 12:15:33 2026  IST
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+     29 INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -   
+      1 INFO (TDA-221):    304     304          0    99.94%   99.94%           11           00:01.53     
+      6 INFO (TTC-110): Starting Scan Test generation                                                    
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 77: puts ">>> Generating Coverage Statistics..."
+>>> Generating Coverage Statistics...
+@file(run_modus_atpg.tcl) 78: redirect $RESULTS_DIR/test_coverage_logic.rpt {
+    report_statistics -experiment logic
+}
+@file(run_modus_atpg.tcl) 82: puts ">>> Writing Verilog Vectors (Serial Format)..."
+>>> Writing Verilog Vectors (Serial Format)...
+@file(run_modus_atpg.tcl) 83: write_vectors -testmode $TESTMODE -inexperiment logic -language verilog -scanformat serial -outputfilename $RESULTS_DIR/test_results.v
+Starting Command: write_vectors 
+
+INFO (TDA-015): Log File: ./testresults/logs/log_write_vectors_FULLSCAN_logic_041626121534-289417000 [end TDA_015]
+
+INFO (TVE-001): Verilog write vectors started.   [end TVE_001] 
+INFO (TVE-103): There was no specified TEST offset for this clock 'pin clk'.  A default clock offset of 8.000000 ns will be used.   [end TVE_103] 
+INFO (TVE-103): There was no specified SCAN offset for this clock 'pin clk'.  A default clock offset of 16.000000 ns will be used.   [end TVE_103] 
+INFO (TVE-103): There was no specified TEST offset for this clock 'pin reset'.  A default clock offset of 8.000000 ns will be used.   [end TVE_103] 
+INFO (TVE-004): Reading test section 1.1.  Test section type equals scan.   [end TVE_004] 
+ERROR (TVE-951): Failed to open the file: ./testresults/verilog/.//results/test_results.v.cyclemap.  [end TVE_951] 
+ fopen system error information:  Open Permanent File ./testresults/verilog/.//results/test_results.v.cyclemap (File Description = CycleMap): No such file or directory
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =            9,078,208  bytes
+
+                      CPU Time =    0:00:00.02
+                  Elapsed Time =    0:00:00.05                    [end TDA_001]
+
+     Date Ended:  Thursday Apr 16 12:15:35 2026  IST
+
+INFO (TVE-002): Verilog write vectors has terminated due to Errors.   [end TVE_002] 
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TVE-001): Verilog write vectors started.    
+      1 INFO (TVE-002): Verilog write vectors has terminated due to Errors.    
+      1 INFO (TVE-004): Reading test section 1.1.  Test section type equals scan.    
+      3 INFO (TVE-103): There was no specified TEST offset for this clock 'pin clk'.  A default clock offset of 8.000000 ns will be used.    
+
+  ERROR Messages...
+      1 ERROR (TVE-951): Failed to open the file: ./testresults/verilog/.//results/test_results.v.cyclemap.   
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+File 'run_modus_atpg.tcl' line 83: errors out.
+#@ End verbose source run_modus_atpg.tcl
+@modus:root:/ 3> source run_modus_atpg.tcl
+#@ Begin verbose source run_modus_atpg.tcl
+@file(run_modus_atpg.tcl) 1: puts "\n============================================="
+
+=============================================
+@file(run_modus_atpg.tcl) 2: puts "Starting Modus Test Run Script for processor"
+Starting Modus Test Run Script for processor
+@file(run_modus_atpg.tcl) 3: puts "=============================================\n"
+=============================================
+
+@file(run_modus_atpg.tcl) 5: set WORKDIR ./
+@file(run_modus_atpg.tcl) 6: set CELL processor
+@file(run_modus_atpg.tcl) 9: set RESULTS_DIR $WORKDIR/results
+@file(run_modus_atpg.tcl) 10: puts ">>> Creating results directory at $RESULTS_DIR"
+>>> Creating results directory at .//results
+@file(run_modus_atpg.tcl) 11: file mkdir $RESULTS_DIR
+@file(run_modus_atpg.tcl) 14: set NETLIST $WORKDIR/processor_post_dft.v
+@file(run_modus_atpg.tcl) 17: puts ">>> Setting 90nm Library Models..."
+>>> Setting 90nm Library Models...
+@file(run_modus_atpg.tcl) 18: set LIBRARY "/home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v"
+@file(run_modus_atpg.tcl) 21: set TESTMODE FULLSCAN
+@file(run_modus_atpg.tcl) 24: set ASSIGNFILE ""
+@file(run_modus_atpg.tcl) 25: set MODEDEF ""
+@file(run_modus_atpg.tcl) 26: catch {
+    set ASSIGNFILE [exec bash -c "find $WORKDIR -type f -name \"*.pinassign\" | head -n 1"]
+    set MODEDEF [exec bash -c "find $WORKDIR -type f -name \"*.modedef\" | head -n 1"]
+}
+@file(run_modus_atpg.tcl) 34: puts  ">>> Building Test Model"
+>>> Building Test Model
+@file(run_modus_atpg.tcl) 35: build_model  \
+   -cell $CELL \
+   -workdir $WORKDIR \
+   -designsource $NETLIST \
+   -techlib $LIBRARY \
+   -designtop $CELL \
+   -allowmissingmodules yes 
+Starting Command: build_model 
+
+INFO (TDA-015): Log File: .//testresults/logs/log_build_model_041626121617-537990000 [end TDA_015]
+
+INFO (TEI-195): Build Model - Controller starting: [end TEI_195] 
+
+
+Search Order  1:  ".//processor_post_dft.v"
+Search Order  2:  "/home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v"
+
+
+
+Reading Verilog data from .//processor_post_dft.v
+
+Verilog Parser complete - 1 modules, 0 gates, 0 user defined primitives.
+
+
+Reading Verilog data from /home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v
+
+Verilog Parser complete - 480 modules, 1855 gates, 3 user defined primitives.
+
+
+
+INFO (TEI-196): Build Model - Hierarchical Model Build starting: [end TEI_196] 
+
+WARNING (TEI-110): Pin 'NOTIFIER' of 'cell udp_dff' has no external net connection for any usage in the design. Cell contents file: '/home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v'.  [end TEI_110] 
+
+
+Number of blocks in the hierarchical model is: 11,991.
+
+Number of technology library cell instances in the hierarchical model is: 1,537.
+
+
+INFO (TEI-197): Build Model - Hierarchical Model Build completed. [end TEI_197] 
+
+
+
+INFO (TEI-198): Build Model - Flat Model Build starting: [end TEI_198] 
+
+ defaultTIE = X
+ defaultDFN = T
+
+
+INFO (TLM-055): Design Summary
+                --------------
+
+Hierarchical Model:                  Flattened Model:
+         11,991  Blocks                       8,372  Blocks
+         38,428  Pins                         8,372  Nodes
+         21,721  Nets
+
+Primary Inputs:                      Primary Outputs:
+          5  Input Only                        15  Output Only
+          0  Input/Output                       0  Input/Output
+          5  Total Inputs                      15  Total Outputs
+
+Tied Nets:                           Dotted Nets:
+        564  Tied to 0                          0  Two-State
+        296  Tied to 1                          0  Three-State
+          0  Tied to X                          0  Total Dotted Nets
+        860  Total Tied Nets
+
+Selected Primitive Functions:
+          0  Clock Chopper (CHOP) primitives 
+          0  RAMs
+          0  ROMs
+          0  TSDs
+          0  Resistors
+          0  Transistors
+        566  MUX2s
+          0  Latches
+
+
+        296  Rising  Edge Flop w/Set-Dominant and Reset Port
+        296  Total Flops
+
+      1,537  Technology Library Cell Instances
+
+[end TLM_055] 
+Optimization removed logic for 4 of 47 cells in this design.
+
+Optimization removed a total of 28 tied Latch Ports.
+Optimization removed a total of 310 non-controlling inputs.
+Optimization removed a total of 958 dangling logic nodes.
+
+
+
+INFO (TEI-199): Build Model - Flat Model Build completed.  [end TEI_199] 
+
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =          102,644,656  bytes
+
+                      CPU Time =    0:00:00.66
+                  Elapsed Time =    0:00:01.33                    [end TDA_001]
+
+
+
+INFO (TEI-200): Build Model - Controller completed. [end TEI_200] 
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TEI-195): Build Model - Controller starting:  
+      1 INFO (TEI-196): Build Model - Hierarchical Model Build starting:  
+      1 INFO (TEI-197): Build Model - Hierarchical Model Build completed.  
+      1 INFO (TEI-198): Build Model - Flat Model Build starting:  
+      1 INFO (TEI-199): Build Model - Flat Model Build completed.   
+      1 INFO (TEI-200): Build Model - Controller completed.  
+      1 INFO (TLM-055): Design Summary
+
+  WARNING Messages...
+      1 WARNING (TEI-110): Pin 'NOTIFIER' of 'cell udp_dff' has no external net connection for any usage in the design. Cell contents file: '/home/install/FOUNDRY/digital/90nm/dig/vlog/typical.v'.   
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 46: puts ">>> Building Test Mode $TESTMODE"
+>>> Building Test Mode FULLSCAN
+@file(run_modus_atpg.tcl) 47: if {$MODEDEF ne ""} {
+    build_testmode -workdir $WORKDIR -testmode $TESTMODE -modedef $MODEDEF -assignfile $ASSIGNFILE 
+} else {
+    build_testmode -workdir $WORKDIR -testmode $TESTMODE -assignfile $ASSIGNFILE 
+}
+Starting Command: build_testmode 
+
+INFO (TDA-015): Log File: .//testresults/logs/log_build_testmode_FULLSCAN_041626121622-196147000 [end TDA_015]
+
+MODEDEFPATH set to:  /home/install/MODUS201/tools.lnx86/tb/defaults/rules/modedef 
+TDRPATH set to: /home/install/MODUS201/tools.lnx86/tb/defaults/rules/tdr 
+
+Modus Build Test Mode(s) beginning...
+
+   TDR NAME      =  dummy.tdr 
+
+   SCAN_TYPE     =  GSD 
+   BOUNDARY      =  NONE 
+   IN            =  PI 
+   OUT           =  PO 
+
+INFO (TTM-391): A default modeinit sequence will be generated.   [end TTM_391] 
+INFO (TTM-387): A default scanop sequence will be generated.   [end TTM_387] 
+INFO (THM-814): Testmode contains 96.62% active logic,  3.38% inactive logic and  0.00% constraint logic.   [end THM_814] 
+INFO (TTM-357): There are 1 scan chains which are controllable and observable.   [end TTM_357] 
+
+There are no PPIs for Test Mode:  FULLSCAN
+
+Information for Test Mode:  FULLSCAN
+-------------------------
+
+         Scan Type = GSD
+
+
+ Latch Summary for Test Mode:  FULLSCAN
+ Latch Type                #Active   #Inactive       Total
+ ---------------------   ---------   ---------   ---------
+ Test Constraint (TC)            0           0           0 
+ Scan Enable     (SE)            0           0           0 
+ Fixed Value     (FV)            0           0           0 
+ Floating                        0           0           0 
+ Finite State    (FSM)           0           0           0 
+
+INFO (TTM-800): build_testmode has created mode FULLSCAN. [end TTM_800] 
+
+Test Function Pin Information for Test Mode:  FULLSCAN
+-------------------------------------------
+
+          2  SC    (System  Clock)             Pins
+          0  PC    (P Shift Clock)             Pins
+          1  EC    (E Shift Clock)             Pins
+
+          0  OSC   (Oscillator)                Pins
+
+          0  TI    (Test Inhibit)              Pins
+          1  SE    (Scan Enable)               Pins
+          0  CI    (Clock Isolation)           Pins
+          0  OI    (Output Inhibit)            Pins
+
+          1  SI    (Scan Input)                Pins
+          1  SO    (Scan Output)               Pins
+
+  Pin Index    Type Test Function                         Pin Name / Net Name
+  ---------    ---- ----------------------------------    -------------------
+          1      PI  -SC                                  reset / reset
+          0      PI  -EC  -SC                             clk / clk
+          2      PI  +SE                                  scan_en / scan_en
+          3      PI   SI                                  scan_in / scan_in
+         19      PO   SO                                  scan_out / scan_out
+
+
+            Cumulative Time in hours:minutes:seconds:
+                   CPU Time =   0:00:00.10
+               Elapsed Time =   0:00:02.18
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (THM-814): Testmode contains 96.62% active logic,  3.38% inactive logic and  0.00% constraint logic.    
+      1 INFO (TTM-357): There are 1 scan chains which are controllable and observable.    
+      1 INFO (TTM-387): A default scanop sequence will be generated.    
+      1 INFO (TTM-391): A default modeinit sequence will be generated.    
+      1 INFO (TTM-800): build_testmode has created mode FULLSCAN.  
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 56: puts ">>> Verifying Test Structures..."
+>>> Verifying Test Structures...
+@file(run_modus_atpg.tcl) 57: verify_test_structures -workdir $WORKDIR -testmode $TESTMODE > $RESULTS_DIR/verify_structures.rpt
+@file(run_modus_atpg.tcl) 59: puts ">>> Reporting Test Structures..."
+>>> Reporting Test Structures...
+@file(run_modus_atpg.tcl) 60: report_test_structures -workdir $WORKDIR -testmode $TESTMODE > $RESULTS_DIR/test_structures.rpt
+@file(run_modus_atpg.tcl) 65: puts ">>> Building Test Fault Model..."
+>>> Building Test Fault Model...
+@file(run_modus_atpg.tcl) 66: build_faultmodel -fullfault yes
+INFO (TUI-772): The command 'build_faultmodel' will release the currently acquired resources. Please set the context and circuit state after completion of the command. [end TUI_772] 
+
+Starting Command: build_faultmodel 
+
+INFO (TDA-015): Log File: ./testresults/logs/log_build_faultmodel_041626121635-170832000 [end TDA_015]
+
+INFO (TFM-099): Build Fault Model started.  [end TFM_099] 
+INFO (TFM-102): Creating faultModel file ./tbdata/faultModel.  [end TFM_102] 
+
+Global Ignored Static Fault Count               566
+Global Ignored Dynamic Fault Count             1130
+
+
+                            Global Statistics
+
+                    ATCov  ----------------------- Global Faults --------------------------
+                   Global        Total       Tested     Possibly    Redundant     Untested
+
+Total Static         0.00        18338            0            0            0        18338
+Collapsed Static     0.00        11396            0            0            0        11396
+PI Static            0.00            8            0            0            0            8
+PO Static            0.00           30            0            0            0           30
+
+Total Dynamic        0.00        22216            0            0            0        22216
+Collapsed Dynamic    0.00        14346            0            0            0        14346
+PI Dynamic           0.00            8            0            0            0            8
+PO Dynamic           0.00           30            0            0            0           30
+
+Parametric        
+
+IDDq                 0.00        18338            0                                  18338
+
+
+
+INFO (TFM-103): Creating faultStatus file ./tbdata/faultStatus.  [end TFM_103] 
+
+                           Testmode Statistics: FULLSCAN
+
+                 ---- ATCov ---- ------------------------ Testmode Faults ----------------------- ------------------------- Global Faults ------------------------
+                 Testmode Global        Total       Tested     Possibly    Redundant     Untested        Total       Tested     Possibly    Redundant     Untested
+
+Total Static         0.00   0.00        18338            0            0            0        18338        18338            0            0            0        18338
+Collapsed Static     0.00   0.00        11396            0            0            0        11396        11396            0            0            0        11396
+PI Static            0.00   0.00            8            0            0            0            8            8            0            0            0            8
+PO Static            0.00   0.00           30            0            0            0           30           30            0            0            0           30
+
+Total Dynamic        0.00   0.00        20396            0            0            0        20396        22216            0            0            0        22216
+Collapsed Dynamic    0.00   0.00        13118            0            0            0        13118        14346            0            0            0        14346
+PI Dynamic           0.00   0.00            4            0            0            0            4            8            0            0            0            8
+PO Dynamic           0.00   0.00           30            0            0            0           30           30            0            0            0           30
+
+Parametric        
+
+IDDq                 0.00   0.00        18338            0                                  18338        18338            0                                  18338
+
+Path                 0.00   0.00            0            0                                      0            0            0                                      0
+
+
+
+INFO (TFM-704): Maximum Global Test Coverage Statistics: 
+
+                  %Active      #Faults      #Active    #Inactive
+Total Static       100.00        18338        18338            0
+Collapsed Static   100.00        11396        11396            0
+PI Static          100.00            8            8            0
+PO Static          100.00           30           30            0
+
+Total Dynamic       91.81        22216        20396         1820
+Collapsed Dynamic   91.44        14346        13118         1228
+PI Dynamic          50.00            8            4            4
+PO Dynamic         100.00           30           30            0
+
+Parametric        
+
+There are 1 test mode(s) defined:
+      FULLSCAN
+
+[end TFM_704]
+INFO (TFM-109): Build Fault Model has completed with highest level severity message of INFO.  [end TFM_109] 
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =           12,092,080  bytes
+
+                      CPU Time =    0:00:00.03
+                  Elapsed Time =    0:00:00.14                    [end TDA_001]
+
+     Date Ended:  Thursday Apr 16 12:16:37 2026  IST
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TFM-099): Build Fault Model started.   
+      1 INFO (TFM-102): Creating faultModel file ./tbdata/faultModel.   
+      1 INFO (TFM-103): Creating faultStatus file ./tbdata/faultStatus.   
+      1 INFO (TFM-109): Build Fault Model has completed with highest level severity message of INFO.   
+      1 INFO (TFM-704): Maximum Global Test Coverage Statistics: 
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 71: puts ">>> Generating Scan Chain Tests..."
+>>> Generating Scan Chain Tests...
+@file(run_modus_atpg.tcl) 72: create_scanchain_tests -testmode $TESTMODE -experiment scan
+Starting Command: create_scanchain_tests 
+
+INFO (TDA-015): Log File: ./testresults/logs/log_create_scanchain_tests_FULLSCAN_scan_041626121638-254229000 [end TDA_015]
+
+
+
+****************************************************************************************************
+Coverage Definitions:
+ #Faults  : Number of Active Faults (observable).
+ #Tested  : Number of Active Faults marked tested.
+ #Possibly: Number of Active Faults marked possibly tested
+            (good value is 0 or 1; fault value is X).
+ #Redund  : Number of Active Faults untestable due to redundancy.
+ #Untested: Number of Active Faults untested.
+ %TCov  (%Test Coverage)                      : #Tested / #Faults
+ %ATCov (%Adjusted TCov)                      : #Tested / (#Faults-#Redund)
+****************************************************************************************************
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338            0            0            0        18338   0.00   0.00
+Total Dynamic                20396            0            0            0        20396   0.00   0.00
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338            0            0            0        18338   0.00   0.00
+Total Dynamic                22216            0            0            0        22216   0.00   0.00
+****************************************************************************************************
+
+*************************************************************************************************************
+INFO (TTC-110): Starting Scan Test generation                                                   [end TTC_110] 
+
+INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -  [end TDA_220] 
+INFO (TDA-220):    Sim.    Eff.  Detected    Tmode    Global     Untested                       [end TDA_220] 
+INFO (TDA-220):      1       1       6499    35.44%   35.44%        11839           00:01.47    [end TDA_220] 
+INFO (TTC-110): Ending Scan Test generation                                                     [end TTC_110] 
+*************************************************************************************************************
+
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338         6503            0            0        11835  35.46  35.46
+Total Dynamic                20396         4150            0            0        16246  20.35  20.35
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338         6503            0            0        11835  35.46  35.46
+Total Dynamic                22216         4150            0            0        18066  18.68  18.68
+****************************************************************************************************
+
+
+              ----Final Pattern Statistics----
+
+ Test Section Type                       # Test Sequences
+----------------------------------------------------------
+ Scan                                           1
+----------------------------------------------------------
+ Total                                          1
+
+(I) File(s) generated (bytes and name):
+
+          90112 ./tbdata/faultStatus.FULLSCAN.scan
+           4076 ./tbdata/TBDbin.FULLSCAN.scan
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =            7,869,104  bytes
+
+                      CPU Time =    0:00:00.05
+                  Elapsed Time =    0:00:01.66                    [end TDA_001]
+
+     Date Ended:  Thursday Apr 16 12:16:39 2026  IST
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      3 INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -   
+      2 INFO (TTC-110): Starting Scan Test generation                                                    
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 74: puts ">>> Generating Logic Tests..."
+>>> Generating Logic Tests...
+@file(run_modus_atpg.tcl) 75: create_logic_tests -testmode $TESTMODE -experiment logic
+Starting Command: create_logic_tests 
+
+INFO (TDA-015): Log File: ./testresults/logs/log_create_logic_tests_FULLSCAN_logic_041626121641-129204000 [end TDA_015]
+
+
+
+****************************************************************************************************
+Coverage Definitions:
+ #Faults  : Number of Active Faults (observable).
+ #Tested  : Number of Active Faults marked tested.
+ #Possibly: Number of Active Faults marked possibly tested
+            (good value is 0 or 1; fault value is X).
+ #Redund  : Number of Active Faults untestable due to redundancy.
+ #Untested: Number of Active Faults untested.
+ %TCov  (%Test Coverage)                      : #Tested / #Faults
+ %ATCov (%Adjusted TCov)                      : #Tested / (#Faults-#Redund)
+****************************************************************************************************
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338            0            0            0        18338   0.00   0.00
+Total Dynamic                20396            0            0            0        20396   0.00   0.00
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338            0            0            0        18338   0.00   0.00
+Total Dynamic                22216            0            0            0        22216   0.00   0.00
+****************************************************************************************************
+
+*************************************************************************************************************
+INFO (TTC-110): Starting Scan Test generation                                                   [end TTC_110] 
+
+INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -  [end TDA_220] 
+INFO (TDA-220):    Sim.    Eff.  Detected    Tmode    Global     Untested                       [end TDA_220] 
+INFO (TDA-220):      1       1       6499    35.44%   35.44%        11839           00:00.94    [end TDA_220] 
+INFO (TTC-110): Ending Scan Test generation                                                     [end TTC_110] 
+*************************************************************************************************************
+
+*************************************************************************************************************
+INFO (TTC-110): Starting Reset/Set Test Generation                                              [end TTC_110] 
+
+INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -  [end TDA_220] 
+INFO (TDA-220):    Sim.    Eff.  Detected    Tmode    Global     Untested                       [end TDA_220] 
+INFO (TDA-220):      1       1        566    38.53%   38.53%        11273           00:00.96    [end TDA_220] 
+INFO (TDA-220):      2       2         28    38.68%   38.68%        11245           00:00.96    [end TDA_220] 
+INFO (TTC-110): Ending Reset/Set Test Generation                                                [end TTC_110] 
+*************************************************************************************************************
+
+*************************************************************************************************************
+INFO (TTC-110): Starting Static Logic Test generation                                           [end TTC_110] 
+
+INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -  [end TDA_220] 
+INFO (TDA-220):    Sim.    Eff.  Detected    Tmode    Global     Untested                       [end TDA_220] 
+INFO (TDA-220):     16      16       5820    70.42%   70.42%         5425           00:01.19    [end TDA_220] 
+INFO (TDA-220):     32      32        857    75.09%   75.09%         4568           00:01.24    [end TDA_220] 
+INFO (TDA-220):     48      48        692    78.86%   78.86%         3876           00:01.27    [end TDA_220] 
+INFO (TDA-220):     64      64        404    81.07%   81.07%         3472           00:01.30    [end TDA_220] 
+INFO (TDA-220):     80      80        447    83.50%   83.50%         3025           00:01.32    [end TDA_220] 
+INFO (TDA-220):     96      96        348    85.40%   85.40%         2677           00:01.35    [end TDA_220] 
+INFO (TDA-220):    112     112        373    87.44%   87.44%         2304           00:01.37    [end TDA_220] 
+INFO (TDA-220):    128     128        315    89.15%   89.15%         1989           00:01.39    [end TDA_220] 
+INFO (TDA-220):    144     144        252    90.53%   90.53%         1737           00:01.41    [end TDA_220] 
+INFO (TDA-220):    160     160        226    91.76%   91.76%         1511           00:01.42    [end TDA_220] 
+INFO (TDA-220):    176     176        212    92.92%   92.92%         1299           00:01.44    [end TDA_220] 
+INFO (TDA-220):    192     192        187    93.94%   93.94%         1112           00:01.46    [end TDA_220] 
+INFO (TDA-220):    208     208        220    95.14%   95.14%          892           00:01.47    [end TDA_220] 
+INFO (TDA-220):    224     224        161    96.01%   96.01%          731           00:01.49    [end TDA_220] 
+INFO (TDA-220):    240     240        172    96.95%   96.95%          559           00:01.50    [end TDA_220] 
+INFO (TDA-220):    256     256        178    97.92%   97.92%          381           00:01.51    [end TDA_220] 
+INFO (TDA-220):    272     272        184    98.93%   98.93%          197           00:01.52    [end TDA_220] 
+INFO (TDA-220):    288     288        149    99.74%   99.74%           48           00:01.54    [end TDA_220] 
+INFO (TDA-220):    304     304         37    99.94%   99.94%           11           00:01.54    [end TDA_220] 
+INFO (TDA-221):    304     304          0    99.94%   99.94%           11           00:01.54    [end TDA_221] 
+INFO (TDA-220):    311     311         11    99.99%   99.99%            0           00:01.55    [end TDA_220] 
+INFO (TTC-110): Ending Static Logic Test generation - processing limit reached                  [end TTC_110] 
+*************************************************************************************************************
+
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338        18338            0            0            0 100.00 100.00
+Total Dynamic                20396         4150            0            0        16246  20.35  20.35
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                 18338        18338            0            0            0 100.00 100.00
+Total Dynamic                22216         4150            0            0        18066  18.68  18.68
+****************************************************************************************************
+
+
+              ----Final Pattern Statistics----
+
+ Test Section Type                       # Test Sequences
+----------------------------------------------------------
+ Scan                                           1
+ Logic                                          313
+----------------------------------------------------------
+ Total                                          314
+
+(I) File(s) generated (bytes and name):
+
+         114688 ./tbdata/faultStatus.FULLSCAN.logic
+         430822 ./tbdata/TBDbin.FULLSCAN.logic
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =            9,670,304  bytes
+
+                      CPU Time =    0:00:00.63
+                  Elapsed Time =    0:00:01.70                    [end TDA_001]
+
+     Date Ended:  Thursday Apr 16 12:16:42 2026  IST
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+     29 INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -   
+      1 INFO (TDA-221):    304     304          0    99.94%   99.94%           11           00:01.54     
+      6 INFO (TTC-110): Starting Scan Test generation                                                    
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 77: puts ">>> Generating Coverage Statistics..."
+>>> Generating Coverage Statistics...
+@file(run_modus_atpg.tcl) 78: redirect $RESULTS_DIR/test_coverage_logic.rpt {
+    report_statistics -experiment logic
+}
+@file(run_modus_atpg.tcl) 82: puts ">>> Writing Verilog Vectors (Serial Format)..."
+>>> Writing Verilog Vectors (Serial Format)...
+@file(run_modus_atpg.tcl) 83: write_vectors -testmode $TESTMODE -inexperiment logic -language verilog -scanformat serial -outputfilename $RESULTS_DIR/test_results.v
+Starting Command: write_vectors 
+
+INFO (TDA-015): Log File: ./testresults/logs/log_write_vectors_FULLSCAN_logic_041626121644-137432000 [end TDA_015]
+
+INFO (TVE-001): Verilog write vectors started.   [end TVE_001] 
+INFO (TVE-103): There was no specified TEST offset for this clock 'pin clk'.  A default clock offset of 8.000000 ns will be used.   [end TVE_103] 
+INFO (TVE-103): There was no specified SCAN offset for this clock 'pin clk'.  A default clock offset of 16.000000 ns will be used.   [end TVE_103] 
+INFO (TVE-103): There was no specified TEST offset for this clock 'pin reset'.  A default clock offset of 8.000000 ns will be used.   [end TVE_103] 
+INFO (TVE-004): Reading test section 1.1.  Test section type equals scan.   [end TVE_004] 
+INFO (TVE-003): Verilog write vectors output file will be: ./testresults/verilog/.//results/test_results.v.cyclemap.   [end TVE_003] 
+INFO (TVE-003): Verilog write vectors output file will be: ./testresults/verilog/.//results/test_results.v.1.verilog.   [end TVE_003] 
+INFO (TVE-005): Created 596 total cycles, of which 4 are test cycles, 592 are scan cycles, 0 are dynamic timed cycles and 0 are dynamic cycles that are not timed.   [end TVE_005] 
+INFO (TVE-008): Created 296 total measures, of which 0 are PO measures and 296 are SO (Scan Out) measures.  [end TVE_008] 
+INFO (TVE-004): Reading test section 1.2.  Test section type equals logic.   [end TVE_004] 
+INFO (TVE-003): Verilog write vectors output file will be: ./testresults/verilog/.//results/test_results.v.2.verilog.   [end TVE_003] 
+INFO (TVE-005): Created 93573 total cycles, of which 629 are test cycles, 92944 are scan cycles, 0 are dynamic timed cycles and 0 are dynamic cycles that are not timed.   [end TVE_005] 
+INFO (TVE-008): Created 97313 total measures, of which 4665 are PO measures and 92648 are SO (Scan Out) measures.  [end TVE_008] 
+INFO (TVE-003): Verilog write vectors output file will be: ./testresults/verilog/.//results/test_results.v.mainsim.v.   [end TVE_003] 
+
+INFO (TVE-050):         TEST SEQUENCE COVERAGE ESTIMATE REPORT  
+    Test       | Global   | Global   | Global   | Global   | Global   | Global   | Sequence   | Overlapped | Total      | 
+    Sequence   | Static   | Static   | Static   | Dynamic  | Dynamic  | Dynamic  | Cycle      | Cycle      | Cycle      | 
+               | Total    | Delta    | Adjusted | Total    | Delta    | Adjusted | Count      | Count      | Count      | 
+               | Coverage | Coverage | Total    | Coverage | Coverage | Total    |            |            |            | 
+               |          |          | Coverage |          |          | Coverage |            |            |            | 
+     1.1.1.1.1 |  0.00    |  0.00    |  0.00    |  0.00    |  0.00    |  0.00    |          1 |          0 |          1 |
+     1.1.1.2.1 |  35.44   |  0.00    |  35.44   |  18.68   |  0.00    |  18.68   |        595 |          0 |        596 |
+     1.2.1.1.1 |  35.44   |  0.00    |  35.44   |  18.68   |  0.00    |  18.68   |          1 |          0 |        597 |
+     1.2.1.2.1 |  38.53   |  3.09    |  38.53   |  18.68   |  0.00    |  18.68   |        595 |        297 |       1192 |
+     1.2.1.3.1 |  38.68   |  0.15    |  38.68   |  18.68   |  0.00    |  18.68   |        298 |        297 |       1490 |
+     1.2.1.4.1 |  41.13   |  2.45    |  41.13   |  18.68   |  0.00    |  18.68   |        298 |        297 |       1788 |
+     1.2.1.4.2 |  44.27   |  3.14    |  44.27   |  18.68   |  0.00    |  18.68   |        298 |        297 |       2086 |
+     1.2.1.4.3 |  49.39   |  5.12    |  49.39   |  18.68   |  0.00    |  18.68   |        298 |        297 |       2384 |
+     1.2.1.4.4 |  59.89   |  10.50   |  59.89   |  18.68   |  0.00    |  18.68   |        298 |        297 |       2682 |
+     1.2.1.4.5 |  61.24   |  1.36    |  61.24   |  18.68   |  0.00    |  18.68   |        298 |        297 |       2980 |
+     1.2.1.4.6 |  62.77   |  1.52    |  62.77   |  18.68   |  0.00    |  18.68   |        298 |        297 |       3278 |
+     1.2.1.4.7 |  63.55   |  0.79    |  63.55   |  18.68   |  0.00    |  18.68   |        298 |        297 |       3576 |
+     1.2.1.4.8 |  65.24   |  1.69    |  65.24   |  18.68   |  0.00    |  18.68   |        298 |        297 |       3874 |
+     1.2.1.4.9 |  66.01   |  0.77    |  66.01   |  18.68   |  0.00    |  18.68   |        298 |        297 |       4172 |
+    1.2.1.4.10 |  67.05   |  1.05    |  67.05   |  18.68   |  0.00    |  18.68   |        298 |        297 |       4470 |
+    1.2.1.4.11 |  67.95   |  0.90    |  67.95   |  18.68   |  0.00    |  18.68   |        298 |        297 |       4768 |
+    1.2.1.4.12 |  68.49   |  0.53    |  68.49   |  18.68   |  0.00    |  18.68   |        298 |        297 |       5066 |
+    1.2.1.4.13 |  68.86   |  0.38    |  68.86   |  18.68   |  0.00    |  18.68   |        298 |        297 |       5364 |
+    1.2.1.4.14 |  69.35   |  0.49    |  69.35   |  18.68   |  0.00    |  18.68   |        298 |        297 |       5662 |
+    1.2.1.4.15 |  70.08   |  0.74    |  70.08   |  18.68   |  0.00    |  18.68   |        298 |        297 |       5960 |
+    1.2.1.4.16 |  70.42   |  0.33    |  70.42   |  18.68   |  0.00    |  18.68   |        298 |        297 |       6258 |
+     1.2.1.5.1 |  70.54   |  0.12    |  70.54   |  18.68   |  0.00    |  18.68   |        298 |        297 |       6556 |
+     1.2.1.5.2 |  70.81   |  0.28    |  70.81   |  18.68   |  0.00    |  18.68   |        298 |        297 |       6854 |
+     1.2.1.5.3 |  71.29   |  0.48    |  71.29   |  18.68   |  0.00    |  18.68   |        298 |        297 |       7152 |
+     1.2.1.5.4 |  71.51   |  0.21    |  71.51   |  18.68   |  0.00    |  18.68   |        298 |        297 |       7450 |
+     1.2.1.5.5 |  71.58   |  0.08    |  71.58   |  18.68   |  0.00    |  18.68   |        298 |        297 |       7748 |
+     1.2.1.5.6 |  72.00   |  0.41    |  72.00   |  18.68   |  0.00    |  18.68   |        298 |        297 |       8046 |
+     1.2.1.5.7 |  72.24   |  0.25    |  72.24   |  18.68   |  0.00    |  18.68   |        298 |        297 |       8344 |
+     1.2.1.5.8 |  72.58   |  0.33    |  72.58   |  18.68   |  0.00    |  18.68   |        298 |        297 |       8642 |
+     1.2.1.5.9 |  72.90   |  0.33    |  72.90   |  18.68   |  0.00    |  18.68   |        298 |        297 |       8940 |
+    1.2.1.5.10 |  73.48   |  0.58    |  73.48   |  18.68   |  0.00    |  18.68   |        298 |        297 |       9238 |
+    1.2.1.5.11 |  73.55   |  0.07    |  73.55   |  18.68   |  0.00    |  18.68   |        298 |        297 |       9536 |
+    1.2.1.5.12 |  73.60   |  0.05    |  73.60   |  18.68   |  0.00    |  18.68   |        298 |        297 |       9834 |
+    1.2.1.5.13 |  74.09   |  0.49    |  74.09   |  18.68   |  0.00    |  18.68   |        298 |        297 |      10132 |
+    1.2.1.5.14 |  74.29   |  0.20    |  74.29   |  18.68   |  0.00    |  18.68   |        298 |        297 |      10430 |
+    1.2.1.5.15 |  74.89   |  0.61    |  74.89   |  18.68   |  0.00    |  18.68   |        298 |        297 |      10728 |
+    1.2.1.5.16 |  75.09   |  0.20    |  75.09   |  18.68   |  0.00    |  18.68   |        298 |        297 |      11026 |
+     1.2.1.6.1 |  75.19   |  0.10    |  75.19   |  18.68   |  0.00    |  18.68   |        298 |        297 |      11324 |
+     1.2.1.6.2 |  75.36   |  0.17    |  75.36   |  18.68   |  0.00    |  18.68   |        298 |        297 |      11622 |
+     1.2.1.6.3 |  75.43   |  0.08    |  75.43   |  18.68   |  0.00    |  18.68   |        298 |        297 |      11920 |
+     1.2.1.6.4 |  75.48   |  0.05    |  75.48   |  18.68   |  0.00    |  18.68   |        298 |        297 |      12218 |
+     1.2.1.6.5 |  75.54   |  0.05    |  75.54   |  18.68   |  0.00    |  18.68   |        298 |        297 |      12516 |
+     1.2.1.6.6 |  75.72   |  0.19    |  75.72   |  18.68   |  0.00    |  18.68   |        298 |        297 |      12814 |
+     1.2.1.6.7 |  76.48   |  0.76    |  76.48   |  18.68   |  0.00    |  18.68   |        298 |        297 |      13112 |
+     1.2.1.6.8 |  76.66   |  0.17    |  76.66   |  18.68   |  0.00    |  18.68   |        298 |        297 |      13410 |
+     1.2.1.6.9 |  76.70   |  0.05    |  76.70   |  18.68   |  0.00    |  18.68   |        298 |        297 |      13708 |
+    1.2.1.6.10 |  76.92   |  0.21    |  76.92   |  18.68   |  0.00    |  18.68   |        298 |        297 |      14006 |
+    1.2.1.6.11 |  77.36   |  0.45    |  77.36   |  18.68   |  0.00    |  18.68   |        298 |        297 |      14304 |
+    1.2.1.6.12 |  77.79   |  0.43    |  77.79   |  18.68   |  0.00    |  18.68   |        298 |        297 |      14602 |
+    1.2.1.6.13 |  77.95   |  0.16    |  77.95   |  18.68   |  0.00    |  18.68   |        298 |        297 |      14900 |
+    1.2.1.6.14 |  78.07   |  0.11    |  78.07   |  18.68   |  0.00    |  18.68   |        298 |        297 |      15198 |
+    1.2.1.6.15 |  78.71   |  0.64    |  78.71   |  18.68   |  0.00    |  18.68   |        298 |        297 |      15496 |
+    1.2.1.6.16 |  78.86   |  0.15    |  78.86   |  18.68   |  0.00    |  18.68   |        298 |        297 |      15794 |
+     1.2.1.7.1 |  78.94   |  0.08    |  78.94   |  18.68   |  0.00    |  18.68   |        298 |        297 |      16092 |
+     1.2.1.7.2 |  79.20   |  0.26    |  79.20   |  18.68   |  0.00    |  18.68   |        298 |        297 |      16390 |
+     1.2.1.7.3 |  79.35   |  0.15    |  79.35   |  18.68   |  0.00    |  18.68   |        298 |        297 |      16688 |
+     1.2.1.7.4 |  79.42   |  0.07    |  79.42   |  18.68   |  0.00    |  18.68   |        298 |        297 |      16986 |
+     1.2.1.7.5 |  79.57   |  0.15    |  79.57   |  18.68   |  0.00    |  18.68   |        298 |        297 |      17284 |
+     1.2.1.7.6 |  79.95   |  0.38    |  79.95   |  18.68   |  0.00    |  18.68   |        298 |        297 |      17582 |
+     1.2.1.7.7 |  80.03   |  0.08    |  80.03   |  18.68   |  0.00    |  18.68   |        298 |        297 |      17880 |
+     1.2.1.7.8 |  80.08   |  0.05    |  80.08   |  18.68   |  0.00    |  18.68   |        298 |        297 |      18178 |
+     1.2.1.7.9 |  80.14   |  0.06    |  80.14   |  18.68   |  0.00    |  18.68   |        298 |        297 |      18476 |
+    1.2.1.7.10 |  80.40   |  0.26    |  80.40   |  18.68   |  0.00    |  18.68   |        298 |        297 |      18774 |
+    1.2.1.7.11 |  80.46   |  0.06    |  80.46   |  18.68   |  0.00    |  18.68   |        298 |        297 |      19072 |
+    1.2.1.7.12 |  80.62   |  0.16    |  80.62   |  18.68   |  0.00    |  18.68   |        298 |        297 |      19370 |
+    1.2.1.7.13 |  80.78   |  0.16    |  80.78   |  18.68   |  0.00    |  18.68   |        298 |        297 |      19668 |
+    1.2.1.7.14 |  80.84   |  0.05    |  80.84   |  18.68   |  0.00    |  18.68   |        298 |        297 |      19966 |
+    1.2.1.7.15 |  80.91   |  0.07    |  80.91   |  18.68   |  0.00    |  18.68   |        298 |        297 |      20264 |
+    1.2.1.7.16 |  81.07   |  0.16    |  81.07   |  18.68   |  0.00    |  18.68   |        298 |        297 |      20562 |
+     1.2.1.8.1 |  81.13   |  0.06    |  81.13   |  18.68   |  0.00    |  18.68   |        298 |        297 |      20860 |
+     1.2.1.8.2 |  81.22   |  0.09    |  81.22   |  18.68   |  0.00    |  18.68   |        298 |        297 |      21158 |
+     1.2.1.8.3 |  81.40   |  0.18    |  81.40   |  18.68   |  0.00    |  18.68   |        298 |        297 |      21456 |
+     1.2.1.8.4 |  81.56   |  0.16    |  81.56   |  18.68   |  0.00    |  18.68   |        298 |        297 |      21754 |
+     1.2.1.8.5 |  81.61   |  0.05    |  81.61   |  18.68   |  0.00    |  18.68   |        298 |        297 |      22052 |
+     1.2.1.8.6 |  81.74   |  0.13    |  81.74   |  18.68   |  0.00    |  18.68   |        298 |        297 |      22350 |
+     1.2.1.8.7 |  81.82   |  0.09    |  81.82   |  18.68   |  0.00    |  18.68   |        298 |        297 |      22648 |
+     1.2.1.8.8 |  82.02   |  0.20    |  82.02   |  18.68   |  0.00    |  18.68   |        298 |        297 |      22946 |
+     1.2.1.8.9 |  82.18   |  0.16    |  82.18   |  18.68   |  0.00    |  18.68   |        298 |        297 |      23244 |
+    1.2.1.8.10 |  82.32   |  0.13    |  82.32   |  18.68   |  0.00    |  18.68   |        298 |        297 |      23542 |
+    1.2.1.8.11 |  82.46   |  0.15    |  82.46   |  18.68   |  0.00    |  18.68   |        298 |        297 |      23840 |
+    1.2.1.8.12 |  82.52   |  0.06    |  82.52   |  18.68   |  0.00    |  18.68   |        298 |        297 |      24138 |
+    1.2.1.8.13 |  82.64   |  0.11    |  82.64   |  18.68   |  0.00    |  18.68   |        298 |        297 |      24436 |
+    1.2.1.8.14 |  83.01   |  0.38    |  83.01   |  18.68   |  0.00    |  18.68   |        298 |        297 |      24734 |
+    1.2.1.8.15 |  83.36   |  0.35    |  83.36   |  18.68   |  0.00    |  18.68   |        298 |        297 |      25032 |
+    1.2.1.8.16 |  83.50   |  0.14    |  83.50   |  18.68   |  0.00    |  18.68   |        298 |        297 |      25330 |
+     1.2.1.9.1 |  83.60   |  0.10    |  83.60   |  18.68   |  0.00    |  18.68   |        298 |        297 |      25628 |
+     1.2.1.9.2 |  83.65   |  0.05    |  83.65   |  18.68   |  0.00    |  18.68   |        298 |        297 |      25926 |
+     1.2.1.9.3 |  83.74   |  0.09    |  83.74   |  18.68   |  0.00    |  18.68   |        298 |        297 |      26224 |
+     1.2.1.9.4 |  83.79   |  0.05    |  83.79   |  18.68   |  0.00    |  18.68   |        298 |        297 |      26522 |
+     1.2.1.9.5 |  84.10   |  0.31    |  84.10   |  18.68   |  0.00    |  18.68   |        298 |        297 |      26820 |
+     1.2.1.9.6 |  84.13   |  0.03    |  84.13   |  18.68   |  0.00    |  18.68   |        298 |        297 |      27118 |
+     1.2.1.9.7 |  84.33   |  0.21    |  84.33   |  18.68   |  0.00    |  18.68   |        298 |        297 |      27416 |
+     1.2.1.9.8 |  84.38   |  0.04    |  84.38   |  18.68   |  0.00    |  18.68   |        298 |        297 |      27714 |
+     1.2.1.9.9 |  84.41   |  0.04    |  84.41   |  18.68   |  0.00    |  18.68   |        298 |        297 |      28012 |
+    1.2.1.9.10 |  84.48   |  0.07    |  84.48   |  18.68   |  0.00    |  18.68   |        298 |        297 |      28310 |
+    1.2.1.9.11 |  84.74   |  0.26    |  84.74   |  18.68   |  0.00    |  18.68   |        298 |        297 |      28608 |
+    1.2.1.9.12 |  84.83   |  0.09    |  84.83   |  18.68   |  0.00    |  18.68   |        298 |        297 |      28906 |
+    1.2.1.9.13 |  84.90   |  0.07    |  84.90   |  18.68   |  0.00    |  18.68   |        298 |        297 |      29204 |
+    1.2.1.9.14 |  85.07   |  0.17    |  85.07   |  18.68   |  0.00    |  18.68   |        298 |        297 |      29502 |
+    1.2.1.9.15 |  85.15   |  0.07    |  85.15   |  18.68   |  0.00    |  18.68   |        298 |        297 |      29800 |
+    1.2.1.9.16 |  85.40   |  0.26    |  85.40   |  18.68   |  0.00    |  18.68   |        298 |        297 |      30098 |
+    1.2.1.10.1 |  85.53   |  0.13    |  85.53   |  18.68   |  0.00    |  18.68   |        298 |        297 |      30396 |
+    1.2.1.10.2 |  85.57   |  0.04    |  85.57   |  18.68   |  0.00    |  18.68   |        298 |        297 |      30694 |
+    1.2.1.10.3 |  85.65   |  0.08    |  85.65   |  18.68   |  0.00    |  18.68   |        298 |        297 |      30992 |
+    1.2.1.10.4 |  85.89   |  0.25    |  85.89   |  18.68   |  0.00    |  18.68   |        298 |        297 |      31290 |
+    1.2.1.10.5 |  86.25   |  0.35    |  86.25   |  18.68   |  0.00    |  18.68   |        298 |        297 |      31588 |
+    1.2.1.10.6 |  86.48   |  0.23    |  86.48   |  18.68   |  0.00    |  18.68   |        298 |        297 |      31886 |
+    1.2.1.10.7 |  86.53   |  0.04    |  86.53   |  18.68   |  0.00    |  18.68   |        298 |        297 |      32184 |
+    1.2.1.10.8 |  86.57   |  0.04    |  86.57   |  18.68   |  0.00    |  18.68   |        298 |        297 |      32482 |
+    1.2.1.10.9 |  86.62   |  0.05    |  86.62   |  18.68   |  0.00    |  18.68   |        298 |        297 |      32780 |
+   1.2.1.10.10 |  86.67   |  0.05    |  86.67   |  18.68   |  0.00    |  18.68   |        298 |        297 |      33078 |
+   1.2.1.10.11 |  86.89   |  0.21    |  86.89   |  18.68   |  0.00    |  18.68   |        298 |        297 |      33376 |
+   1.2.1.10.12 |  87.04   |  0.16    |  87.04   |  18.68   |  0.00    |  18.68   |        298 |        297 |      33674 |
+   1.2.1.10.13 |  87.09   |  0.05    |  87.09   |  18.68   |  0.00    |  18.68   |        298 |        297 |      33972 |
+   1.2.1.10.14 |  87.27   |  0.18    |  87.27   |  18.68   |  0.00    |  18.68   |        298 |        297 |      34270 |
+   1.2.1.10.15 |  87.39   |  0.12    |  87.39   |  18.68   |  0.00    |  18.68   |        298 |        297 |      34568 |
+   1.2.1.10.16 |  87.44   |  0.04    |  87.44   |  18.68   |  0.00    |  18.68   |        298 |        297 |      34866 |
+    1.2.1.11.1 |  87.54   |  0.10    |  87.54   |  18.68   |  0.00    |  18.68   |        298 |        297 |      35164 |
+    1.2.1.11.2 |  87.59   |  0.05    |  87.59   |  18.68   |  0.00    |  18.68   |        298 |        297 |      35462 |
+    1.2.1.11.3 |  87.71   |  0.12    |  87.71   |  18.68   |  0.00    |  18.68   |        298 |        297 |      35760 |
+    1.2.1.11.4 |  87.75   |  0.04    |  87.75   |  18.68   |  0.00    |  18.68   |        298 |        297 |      36058 |
+    1.2.1.11.5 |  87.91   |  0.16    |  87.91   |  18.68   |  0.00    |  18.68   |        298 |        297 |      36356 |
+    1.2.1.11.6 |  87.95   |  0.04    |  87.95   |  18.68   |  0.00    |  18.68   |        298 |        297 |      36654 |
+    1.2.1.11.7 |  88.13   |  0.18    |  88.13   |  18.68   |  0.00    |  18.68   |        298 |        297 |      36952 |
+    1.2.1.11.8 |  88.20   |  0.07    |  88.20   |  18.68   |  0.00    |  18.68   |        298 |        297 |      37250 |
+    1.2.1.11.9 |  88.50   |  0.30    |  88.50   |  18.68   |  0.00    |  18.68   |        298 |        297 |      37548 |
+   1.2.1.11.10 |  88.54   |  0.04    |  88.54   |  18.68   |  0.00    |  18.68   |        298 |        297 |      37846 |
+   1.2.1.11.11 |  88.67   |  0.13    |  88.67   |  18.68   |  0.00    |  18.68   |        298 |        297 |      38144 |
+   1.2.1.11.12 |  88.79   |  0.13    |  88.79   |  18.68   |  0.00    |  18.68   |        298 |        297 |      38442 |
+   1.2.1.11.13 |  88.90   |  0.11    |  88.90   |  18.68   |  0.00    |  18.68   |        298 |        297 |      38740 |
+   1.2.1.11.14 |  88.99   |  0.09    |  88.99   |  18.68   |  0.00    |  18.68   |        298 |        297 |      39038 |
+   1.2.1.11.15 |  89.07   |  0.08    |  89.07   |  18.68   |  0.00    |  18.68   |        298 |        297 |      39336 |
+   1.2.1.11.16 |  89.15   |  0.08    |  89.15   |  18.68   |  0.00    |  18.68   |        298 |        297 |      39634 |
+    1.2.1.12.1 |  89.28   |  0.13    |  89.28   |  18.68   |  0.00    |  18.68   |        298 |        297 |      39932 |
+    1.2.1.12.2 |  89.32   |  0.04    |  89.32   |  18.68   |  0.00    |  18.68   |        298 |        297 |      40230 |
+    1.2.1.12.3 |  89.38   |  0.06    |  89.38   |  18.68   |  0.00    |  18.68   |        298 |        297 |      40528 |
+    1.2.1.12.4 |  89.44   |  0.06    |  89.44   |  18.68   |  0.00    |  18.68   |        298 |        297 |      40826 |
+    1.2.1.12.5 |  89.71   |  0.27    |  89.71   |  18.68   |  0.00    |  18.68   |        298 |        297 |      41124 |
+    1.2.1.12.6 |  89.76   |  0.05    |  89.76   |  18.68   |  0.00    |  18.68   |        298 |        297 |      41422 |
+    1.2.1.12.7 |  89.83   |  0.07    |  89.83   |  18.68   |  0.00    |  18.68   |        298 |        297 |      41720 |
+    1.2.1.12.8 |  89.93   |  0.10    |  89.93   |  18.68   |  0.00    |  18.68   |        298 |        297 |      42018 |
+    1.2.1.12.9 |  90.03   |  0.10    |  90.03   |  18.68   |  0.00    |  18.68   |        298 |        297 |      42316 |
+   1.2.1.12.10 |  90.08   |  0.04    |  90.08   |  18.68   |  0.00    |  18.68   |        298 |        297 |      42614 |
+   1.2.1.12.11 |  90.16   |  0.09    |  90.16   |  18.68   |  0.00    |  18.68   |        298 |        297 |      42912 |
+   1.2.1.12.12 |  90.28   |  0.11    |  90.28   |  18.68   |  0.00    |  18.68   |        298 |        297 |      43210 |
+   1.2.1.12.13 |  90.35   |  0.07    |  90.35   |  18.68   |  0.00    |  18.68   |        298 |        297 |      43508 |
+   1.2.1.12.14 |  90.41   |  0.07    |  90.41   |  18.68   |  0.00    |  18.68   |        298 |        297 |      43806 |
+   1.2.1.12.15 |  90.46   |  0.04    |  90.46   |  18.68   |  0.00    |  18.68   |        298 |        297 |      44104 |
+   1.2.1.12.16 |  90.53   |  0.07    |  90.53   |  18.68   |  0.00    |  18.68   |        298 |        297 |      44402 |
+    1.2.1.13.1 |  90.63   |  0.10    |  90.63   |  18.68   |  0.00    |  18.68   |        298 |        297 |      44700 |
+    1.2.1.13.2 |  90.70   |  0.07    |  90.70   |  18.68   |  0.00    |  18.68   |        298 |        297 |      44998 |
+    1.2.1.13.3 |  90.75   |  0.05    |  90.75   |  18.68   |  0.00    |  18.68   |        298 |        297 |      45296 |
+    1.2.1.13.4 |  90.82   |  0.08    |  90.82   |  18.68   |  0.00    |  18.68   |        298 |        297 |      45594 |
+    1.2.1.13.5 |  90.95   |  0.13    |  90.95   |  18.68   |  0.00    |  18.68   |        298 |        297 |      45892 |
+    1.2.1.13.6 |  91.05   |  0.09    |  91.05   |  18.68   |  0.00    |  18.68   |        298 |        297 |      46190 |
+    1.2.1.13.7 |  91.11   |  0.06    |  91.11   |  18.68   |  0.00    |  18.68   |        298 |        297 |      46488 |
+    1.2.1.13.8 |  91.24   |  0.13    |  91.24   |  18.68   |  0.00    |  18.68   |        298 |        297 |      46786 |
+    1.2.1.13.9 |  91.31   |  0.08    |  91.31   |  18.68   |  0.00    |  18.68   |        298 |        297 |      47084 |
+   1.2.1.13.10 |  91.34   |  0.03    |  91.34   |  18.68   |  0.00    |  18.68   |        298 |        297 |      47382 |
+   1.2.1.13.11 |  91.49   |  0.15    |  91.49   |  18.68   |  0.00    |  18.68   |        298 |        297 |      47680 |
+   1.2.1.13.12 |  91.52   |  0.03    |  91.52   |  18.68   |  0.00    |  18.68   |        298 |        297 |      47978 |
+   1.2.1.13.13 |  91.54   |  0.02    |  91.54   |  18.68   |  0.00    |  18.68   |        298 |        297 |      48276 |
+   1.2.1.13.14 |  91.59   |  0.05    |  91.59   |  18.68   |  0.00    |  18.68   |        298 |        297 |      48574 |
+   1.2.1.13.15 |  91.63   |  0.04    |  91.63   |  18.68   |  0.00    |  18.68   |        298 |        297 |      48872 |
+   1.2.1.13.16 |  91.76   |  0.13    |  91.76   |  18.68   |  0.00    |  18.68   |        298 |        297 |      49170 |
+    1.2.1.14.1 |  91.87   |  0.11    |  91.87   |  18.68   |  0.00    |  18.68   |        298 |        297 |      49468 |
+    1.2.1.14.2 |  91.93   |  0.06    |  91.93   |  18.68   |  0.00    |  18.68   |        298 |        297 |      49766 |
+    1.2.1.14.3 |  92.02   |  0.09    |  92.02   |  18.68   |  0.00    |  18.68   |        298 |        297 |      50064 |
+    1.2.1.14.4 |  92.13   |  0.11    |  92.13   |  18.68   |  0.00    |  18.68   |        298 |        297 |      50362 |
+    1.2.1.14.5 |  92.17   |  0.04    |  92.17   |  18.68   |  0.00    |  18.68   |        298 |        297 |      50660 |
+    1.2.1.14.6 |  92.18   |  0.01    |  92.18   |  18.68   |  0.00    |  18.68   |        298 |        297 |      50958 |
+    1.2.1.14.7 |  92.31   |  0.13    |  92.31   |  18.68   |  0.00    |  18.68   |        298 |        297 |      51256 |
+    1.2.1.14.8 |  92.39   |  0.08    |  92.39   |  18.68   |  0.00    |  18.68   |        298 |        297 |      51554 |
+    1.2.1.14.9 |  92.50   |  0.11    |  92.50   |  18.68   |  0.00    |  18.68   |        298 |        297 |      51852 |
+   1.2.1.14.10 |  92.55   |  0.05    |  92.55   |  18.68   |  0.00    |  18.68   |        298 |        297 |      52150 |
+   1.2.1.14.11 |  92.59   |  0.04    |  92.59   |  18.68   |  0.00    |  18.68   |        298 |        297 |      52448 |
+   1.2.1.14.12 |  92.67   |  0.08    |  92.67   |  18.68   |  0.00    |  18.68   |        298 |        297 |      52746 |
+   1.2.1.14.13 |  92.74   |  0.07    |  92.74   |  18.68   |  0.00    |  18.68   |        298 |        297 |      53044 |
+   1.2.1.14.14 |  92.79   |  0.05    |  92.79   |  18.68   |  0.00    |  18.68   |        298 |        297 |      53342 |
+   1.2.1.14.15 |  92.87   |  0.08    |  92.87   |  18.68   |  0.00    |  18.68   |        298 |        297 |      53640 |
+   1.2.1.14.16 |  92.92   |  0.05    |  92.92   |  18.68   |  0.00    |  18.68   |        298 |        297 |      53938 |
+    1.2.1.15.1 |  92.95   |  0.04    |  92.95   |  18.68   |  0.00    |  18.68   |        298 |        297 |      54236 |
+    1.2.1.15.2 |  93.03   |  0.07    |  93.03   |  18.68   |  0.00    |  18.68   |        298 |        297 |      54534 |
+    1.2.1.15.3 |  93.07   |  0.04    |  93.07   |  18.68   |  0.00    |  18.68   |        298 |        297 |      54832 |
+    1.2.1.15.4 |  93.11   |  0.04    |  93.11   |  18.68   |  0.00    |  18.68   |        298 |        297 |      55130 |
+    1.2.1.15.5 |  93.18   |  0.07    |  93.18   |  18.68   |  0.00    |  18.68   |        298 |        297 |      55428 |
+    1.2.1.15.6 |  93.25   |  0.08    |  93.25   |  18.68   |  0.00    |  18.68   |        298 |        297 |      55726 |
+    1.2.1.15.7 |  93.35   |  0.09    |  93.35   |  18.68   |  0.00    |  18.68   |        298 |        297 |      56024 |
+    1.2.1.15.8 |  93.39   |  0.04    |  93.39   |  18.68   |  0.00    |  18.68   |        298 |        297 |      56322 |
+    1.2.1.15.9 |  93.43   |  0.04    |  93.43   |  18.68   |  0.00    |  18.68   |        298 |        297 |      56620 |
+   1.2.1.15.10 |  93.48   |  0.05    |  93.48   |  18.68   |  0.00    |  18.68   |        298 |        297 |      56918 |
+   1.2.1.15.11 |  93.57   |  0.09    |  93.57   |  18.68   |  0.00    |  18.68   |        298 |        297 |      57216 |
+   1.2.1.15.12 |  93.64   |  0.07    |  93.64   |  18.68   |  0.00    |  18.68   |        298 |        297 |      57514 |
+   1.2.1.15.13 |  93.72   |  0.08    |  93.72   |  18.68   |  0.00    |  18.68   |        298 |        297 |      57812 |
+   1.2.1.15.14 |  93.80   |  0.08    |  93.80   |  18.68   |  0.00    |  18.68   |        298 |        297 |      58110 |
+   1.2.1.15.15 |  93.87   |  0.07    |  93.87   |  18.68   |  0.00    |  18.68   |        298 |        297 |      58408 |
+   1.2.1.15.16 |  93.94   |  0.07    |  93.94   |  18.68   |  0.00    |  18.68   |        298 |        297 |      58706 |
+    1.2.1.16.1 |  94.02   |  0.08    |  94.02   |  18.68   |  0.00    |  18.68   |        298 |        297 |      59004 |
+    1.2.1.16.2 |  94.08   |  0.06    |  94.08   |  18.68   |  0.00    |  18.68   |        298 |        297 |      59302 |
+    1.2.1.16.3 |  94.15   |  0.07    |  94.15   |  18.68   |  0.00    |  18.68   |        298 |        297 |      59600 |
+    1.2.1.16.4 |  94.20   |  0.05    |  94.20   |  18.68   |  0.00    |  18.68   |        298 |        297 |      59898 |
+    1.2.1.16.5 |  94.29   |  0.09    |  94.29   |  18.68   |  0.00    |  18.68   |        298 |        297 |      60196 |
+    1.2.1.16.6 |  94.35   |  0.06    |  94.35   |  18.68   |  0.00    |  18.68   |        298 |        297 |      60494 |
+    1.2.1.16.7 |  94.43   |  0.09    |  94.43   |  18.68   |  0.00    |  18.68   |        298 |        297 |      60792 |
+    1.2.1.16.8 |  94.52   |  0.09    |  94.52   |  18.68   |  0.00    |  18.68   |        298 |        297 |      61090 |
+    1.2.1.16.9 |  94.69   |  0.17    |  94.69   |  18.68   |  0.00    |  18.68   |        298 |        297 |      61388 |
+   1.2.1.16.10 |  94.76   |  0.07    |  94.76   |  18.68   |  0.00    |  18.68   |        298 |        297 |      61686 |
+   1.2.1.16.11 |  94.84   |  0.08    |  94.84   |  18.68   |  0.00    |  18.68   |        298 |        297 |      61984 |
+   1.2.1.16.12 |  94.90   |  0.06    |  94.90   |  18.68   |  0.00    |  18.68   |        298 |        297 |      62282 |
+   1.2.1.16.13 |  94.96   |  0.06    |  94.96   |  18.68   |  0.00    |  18.68   |        298 |        297 |      62580 |
+   1.2.1.16.14 |  95.00   |  0.04    |  95.00   |  18.68   |  0.00    |  18.68   |        298 |        297 |      62878 |
+   1.2.1.16.15 |  95.05   |  0.04    |  95.05   |  18.68   |  0.00    |  18.68   |        298 |        297 |      63176 |
+   1.2.1.16.16 |  95.14   |  0.09    |  95.14   |  18.68   |  0.00    |  18.68   |        298 |        297 |      63474 |
+    1.2.1.17.1 |  95.18   |  0.04    |  95.18   |  18.68   |  0.00    |  18.68   |        298 |        297 |      63772 |
+    1.2.1.17.2 |  95.26   |  0.08    |  95.26   |  18.68   |  0.00    |  18.68   |        298 |        297 |      64070 |
+    1.2.1.17.3 |  95.32   |  0.07    |  95.32   |  18.68   |  0.00    |  18.68   |        298 |        297 |      64368 |
+    1.2.1.17.4 |  95.41   |  0.09    |  95.41   |  18.68   |  0.00    |  18.68   |        298 |        297 |      64666 |
+    1.2.1.17.5 |  95.44   |  0.03    |  95.44   |  18.68   |  0.00    |  18.68   |        298 |        297 |      64964 |
+    1.2.1.17.6 |  95.47   |  0.03    |  95.47   |  18.68   |  0.00    |  18.68   |        298 |        297 |      65262 |
+    1.2.1.17.7 |  95.53   |  0.05    |  95.53   |  18.68   |  0.00    |  18.68   |        298 |        297 |      65560 |
+    1.2.1.17.8 |  95.58   |  0.05    |  95.58   |  18.68   |  0.00    |  18.68   |        298 |        297 |      65858 |
+    1.2.1.17.9 |  95.62   |  0.04    |  95.62   |  18.68   |  0.00    |  18.68   |        298 |        297 |      66156 |
+   1.2.1.17.10 |  95.70   |  0.08    |  95.70   |  18.68   |  0.00    |  18.68   |        298 |        297 |      66454 |
+   1.2.1.17.11 |  95.80   |  0.10    |  95.80   |  18.68   |  0.00    |  18.68   |        298 |        297 |      66752 |
+   1.2.1.17.12 |  95.82   |  0.02    |  95.82   |  18.68   |  0.00    |  18.68   |        298 |        297 |      67050 |
+   1.2.1.17.13 |  95.86   |  0.04    |  95.86   |  18.68   |  0.00    |  18.68   |        298 |        297 |      67348 |
+   1.2.1.17.14 |  95.90   |  0.04    |  95.90   |  18.68   |  0.00    |  18.68   |        298 |        297 |      67646 |
+   1.2.1.17.15 |  95.95   |  0.05    |  95.95   |  18.68   |  0.00    |  18.68   |        298 |        297 |      67944 |
+   1.2.1.17.16 |  96.01   |  0.06    |  96.01   |  18.68   |  0.00    |  18.68   |        298 |        297 |      68242 |
+    1.2.1.18.1 |  96.06   |  0.04    |  96.06   |  18.68   |  0.00    |  18.68   |        298 |        297 |      68540 |
+    1.2.1.18.2 |  96.12   |  0.07    |  96.12   |  18.68   |  0.00    |  18.68   |        298 |        297 |      68838 |
+    1.2.1.18.3 |  96.23   |  0.10    |  96.23   |  18.68   |  0.00    |  18.68   |        298 |        297 |      69136 |
+    1.2.1.18.4 |  96.30   |  0.07    |  96.30   |  18.68   |  0.00    |  18.68   |        298 |        297 |      69434 |
+    1.2.1.18.5 |  96.34   |  0.04    |  96.34   |  18.68   |  0.00    |  18.68   |        298 |        297 |      69732 |
+    1.2.1.18.6 |  96.40   |  0.06    |  96.40   |  18.68   |  0.00    |  18.68   |        298 |        297 |      70030 |
+    1.2.1.18.7 |  96.47   |  0.07    |  96.47   |  18.68   |  0.00    |  18.68   |        298 |        297 |      70328 |
+    1.2.1.18.8 |  96.49   |  0.03    |  96.49   |  18.68   |  0.00    |  18.68   |        298 |        297 |      70626 |
+    1.2.1.18.9 |  96.56   |  0.07    |  96.56   |  18.68   |  0.00    |  18.68   |        298 |        297 |      70924 |
+   1.2.1.18.10 |  96.66   |  0.10    |  96.66   |  18.68   |  0.00    |  18.68   |        298 |        297 |      71222 |
+   1.2.1.18.11 |  96.70   |  0.04    |  96.70   |  18.68   |  0.00    |  18.68   |        298 |        297 |      71520 |
+   1.2.1.18.12 |  96.76   |  0.06    |  96.76   |  18.68   |  0.00    |  18.68   |        298 |        297 |      71818 |
+   1.2.1.18.13 |  96.80   |  0.04    |  96.80   |  18.68   |  0.00    |  18.68   |        298 |        297 |      72116 |
+   1.2.1.18.14 |  96.82   |  0.02    |  96.82   |  18.68   |  0.00    |  18.68   |        298 |        297 |      72414 |
+   1.2.1.18.15 |  96.90   |  0.08    |  96.90   |  18.68   |  0.00    |  18.68   |        298 |        297 |      72712 |
+   1.2.1.18.16 |  96.95   |  0.05    |  96.95   |  18.68   |  0.00    |  18.68   |        298 |        297 |      73010 |
+    1.2.1.19.1 |  97.00   |  0.04    |  97.00   |  18.68   |  0.00    |  18.68   |        298 |        297 |      73308 |
+    1.2.1.19.2 |  97.02   |  0.03    |  97.02   |  18.68   |  0.00    |  18.68   |        298 |        297 |      73606 |
+    1.2.1.19.3 |  97.09   |  0.07    |  97.09   |  18.68   |  0.00    |  18.68   |        298 |        297 |      73904 |
+    1.2.1.19.4 |  97.16   |  0.07    |  97.16   |  18.68   |  0.00    |  18.68   |        298 |        297 |      74202 |
+    1.2.1.19.5 |  97.21   |  0.04    |  97.21   |  18.68   |  0.00    |  18.68   |        298 |        297 |      74500 |
+    1.2.1.19.6 |  97.26   |  0.05    |  97.26   |  18.68   |  0.00    |  18.68   |        298 |        297 |      74798 |
+    1.2.1.19.7 |  97.32   |  0.06    |  97.32   |  18.68   |  0.00    |  18.68   |        298 |        297 |      75096 |
+    1.2.1.19.8 |  97.40   |  0.08    |  97.40   |  18.68   |  0.00    |  18.68   |        298 |        297 |      75394 |
+    1.2.1.19.9 |  97.45   |  0.04    |  97.45   |  18.68   |  0.00    |  18.68   |        298 |        297 |      75692 |
+   1.2.1.19.10 |  97.46   |  0.01    |  97.46   |  18.68   |  0.00    |  18.68   |        298 |        297 |      75990 |
+   1.2.1.19.11 |  97.61   |  0.15    |  97.61   |  18.68   |  0.00    |  18.68   |        298 |        297 |      76288 |
+   1.2.1.19.12 |  97.66   |  0.05    |  97.66   |  18.68   |  0.00    |  18.68   |        298 |        297 |      76586 |
+   1.2.1.19.13 |  97.72   |  0.06    |  97.72   |  18.68   |  0.00    |  18.68   |        298 |        297 |      76884 |
+   1.2.1.19.14 |  97.80   |  0.08    |  97.80   |  18.68   |  0.00    |  18.68   |        298 |        297 |      77182 |
+   1.2.1.19.15 |  97.86   |  0.07    |  97.86   |  18.68   |  0.00    |  18.68   |        298 |        297 |      77480 |
+   1.2.1.19.16 |  97.92   |  0.06    |  97.92   |  18.68   |  0.00    |  18.68   |        298 |        297 |      77778 |
+    1.2.1.20.1 |  98.02   |  0.09    |  98.02   |  18.68   |  0.00    |  18.68   |        298 |        297 |      78076 |
+    1.2.1.20.2 |  98.10   |  0.08    |  98.10   |  18.68   |  0.00    |  18.68   |        298 |        297 |      78374 |
+    1.2.1.20.3 |  98.16   |  0.06    |  98.16   |  18.68   |  0.00    |  18.68   |        298 |        297 |      78672 |
+    1.2.1.20.4 |  98.21   |  0.05    |  98.21   |  18.68   |  0.00    |  18.68   |        298 |        297 |      78970 |
+    1.2.1.20.5 |  98.27   |  0.05    |  98.27   |  18.68   |  0.00    |  18.68   |        298 |        297 |      79268 |
+    1.2.1.20.6 |  98.34   |  0.07    |  98.34   |  18.68   |  0.00    |  18.68   |        298 |        297 |      79566 |
+    1.2.1.20.7 |  98.38   |  0.04    |  98.38   |  18.68   |  0.00    |  18.68   |        298 |        297 |      79864 |
+    1.2.1.20.8 |  98.46   |  0.08    |  98.46   |  18.68   |  0.00    |  18.68   |        298 |        297 |      80162 |
+    1.2.1.20.9 |  98.53   |  0.07    |  98.53   |  18.68   |  0.00    |  18.68   |        298 |        297 |      80460 |
+   1.2.1.20.10 |  98.60   |  0.08    |  98.60   |  18.68   |  0.00    |  18.68   |        298 |        297 |      80758 |
+   1.2.1.20.11 |  98.67   |  0.07    |  98.67   |  18.68   |  0.00    |  18.68   |        298 |        297 |      81056 |
+   1.2.1.20.12 |  98.73   |  0.06    |  98.73   |  18.68   |  0.00    |  18.68   |        298 |        297 |      81354 |
+   1.2.1.20.13 |  98.77   |  0.04    |  98.77   |  18.68   |  0.00    |  18.68   |        298 |        297 |      81652 |
+   1.2.1.20.14 |  98.83   |  0.06    |  98.83   |  18.68   |  0.00    |  18.68   |        298 |        297 |      81950 |
+   1.2.1.20.15 |  98.91   |  0.08    |  98.91   |  18.68   |  0.00    |  18.68   |        298 |        297 |      82248 |
+   1.2.1.20.16 |  98.93   |  0.01    |  98.93   |  18.68   |  0.00    |  18.68   |        298 |        297 |      82546 |
+    1.2.1.21.1 |  98.97   |  0.04    |  98.97   |  18.68   |  0.00    |  18.68   |        298 |        297 |      82844 |
+    1.2.1.21.2 |  99.03   |  0.07    |  99.03   |  18.68   |  0.00    |  18.68   |        298 |        297 |      83142 |
+    1.2.1.21.3 |  99.06   |  0.03    |  99.06   |  18.68   |  0.00    |  18.68   |        298 |        297 |      83440 |
+    1.2.1.21.4 |  99.13   |  0.07    |  99.13   |  18.68   |  0.00    |  18.68   |        298 |        297 |      83738 |
+    1.2.1.21.5 |  99.20   |  0.07    |  99.20   |  18.68   |  0.00    |  18.68   |        298 |        297 |      84036 |
+    1.2.1.21.6 |  99.25   |  0.04    |  99.25   |  18.68   |  0.00    |  18.68   |        298 |        297 |      84334 |
+    1.2.1.21.7 |  99.32   |  0.07    |  99.32   |  18.68   |  0.00    |  18.68   |        298 |        297 |      84632 |
+    1.2.1.21.8 |  99.39   |  0.07    |  99.39   |  18.68   |  0.00    |  18.68   |        298 |        297 |      84930 |
+    1.2.1.21.9 |  99.47   |  0.08    |  99.47   |  18.68   |  0.00    |  18.68   |        298 |        297 |      85228 |
+   1.2.1.21.10 |  99.52   |  0.05    |  99.52   |  18.68   |  0.00    |  18.68   |        298 |        297 |      85526 |
+   1.2.1.21.11 |  99.56   |  0.04    |  99.56   |  18.68   |  0.00    |  18.68   |        298 |        297 |      85824 |
+   1.2.1.21.12 |  99.61   |  0.04    |  99.61   |  18.68   |  0.00    |  18.68   |        298 |        297 |      86122 |
+   1.2.1.21.13 |  99.67   |  0.07    |  99.67   |  18.68   |  0.00    |  18.68   |        298 |        297 |      86420 |
+   1.2.1.21.14 |  99.68   |  0.01    |  99.68   |  18.68   |  0.00    |  18.68   |        298 |        297 |      86718 |
+   1.2.1.21.15 |  99.72   |  0.04    |  99.72   |  18.68   |  0.00    |  18.68   |        298 |        297 |      87016 |
+   1.2.1.21.16 |  99.74   |  0.02    |  99.74   |  18.68   |  0.00    |  18.68   |        298 |        297 |      87314 |
+    1.2.1.22.1 |  99.75   |  0.02    |  99.75   |  18.68   |  0.00    |  18.68   |        298 |        297 |      87612 |
+    1.2.1.22.2 |  99.77   |  0.01    |  99.77   |  18.68   |  0.00    |  18.68   |        298 |        297 |      87910 |
+    1.2.1.22.3 |  99.77   |  0.01    |  99.77   |  18.68   |  0.00    |  18.68   |        298 |        297 |      88208 |
+    1.2.1.22.4 |  99.78   |  0.01    |  99.78   |  18.68   |  0.00    |  18.68   |        298 |        297 |      88506 |
+    1.2.1.22.5 |  99.79   |  0.01    |  99.79   |  18.68   |  0.00    |  18.68   |        298 |        297 |      88804 |
+    1.2.1.22.6 |  99.80   |  0.01    |  99.80   |  18.68   |  0.00    |  18.68   |        298 |        297 |      89102 |
+    1.2.1.22.7 |  99.82   |  0.02    |  99.82   |  18.68   |  0.00    |  18.68   |        298 |        297 |      89400 |
+    1.2.1.22.8 |  99.83   |  0.01    |  99.83   |  18.68   |  0.00    |  18.68   |        298 |        297 |      89698 |
+    1.2.1.22.9 |  99.83   |  0.01    |  99.83   |  18.68   |  0.00    |  18.68   |        298 |        297 |      89996 |
+   1.2.1.22.10 |  99.85   |  0.02    |  99.85   |  18.68   |  0.00    |  18.68   |        298 |        297 |      90294 |
+   1.2.1.22.11 |  99.90   |  0.05    |  99.90   |  18.68   |  0.00    |  18.68   |        298 |        297 |      90592 |
+   1.2.1.22.12 |  99.91   |  0.01    |  99.91   |  18.68   |  0.00    |  18.68   |        298 |        297 |      90890 |
+   1.2.1.22.13 |  99.92   |  0.01    |  99.92   |  18.68   |  0.00    |  18.68   |        298 |        297 |      91188 |
+   1.2.1.22.14 |  99.93   |  0.01    |  99.93   |  18.68   |  0.00    |  18.68   |        298 |        297 |      91486 |
+   1.2.1.22.15 |  99.93   |  0.01    |  99.93   |  18.68   |  0.00    |  18.68   |        298 |        297 |      91784 |
+   1.2.1.22.16 |  99.94   |  0.01    |  99.94   |  18.68   |  0.00    |  18.68   |        298 |        297 |      92082 |
+    1.2.1.23.1 |  99.95   |  0.01    |  99.95   |  18.68   |  0.00    |  18.68   |        298 |        297 |      92380 |
+    1.2.1.23.2 |  99.96   |  0.01    |  99.96   |  18.68   |  0.00    |  18.68   |        298 |        297 |      92678 |
+    1.2.1.23.3 |  99.96   |  0.01    |  99.96   |  18.68   |  0.00    |  18.68   |        298 |        297 |      92976 |
+    1.2.1.23.4 |  99.98   |  0.02    |  99.98   |  18.68   |  0.00    |  18.68   |        298 |        297 |      93274 |
+    1.2.1.23.5 |  99.98   |  0.01    |  99.98   |  18.68   |  0.00    |  18.68   |        298 |        297 |      93572 |
+    1.2.1.23.6 |  99.99   |  0.01    |  99.99   |  18.68   |  0.00    |  18.68   |        298 |        297 |      93870 |
+    1.2.1.23.7 |  100.00   |  0.01    |  100.00   |  18.68   |  0.00    |  18.68   |        299 |          0 |      94169 |
+  [end TVE_050] 
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =            9,680,352  bytes
+
+                      CPU Time =    0:00:00.09
+                  Elapsed Time =    0:00:00.32                    [end TDA_001]
+
+     Date Ended:  Thursday Apr 16 12:16:46 2026  IST
+
+INFO (TVE-002): Verilog write vectors has completed.   [end TVE_002] 
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TVE-001): Verilog write vectors started.    
+      1 INFO (TVE-002): Verilog write vectors has completed.    
+      4 INFO (TVE-003): Verilog write vectors output file will be: ./testresults/verilog/.//results/test_results.v.cyclemap.    
+      2 INFO (TVE-004): Reading test section 1.1.  Test section type equals scan.    
+      2 INFO (TVE-005): Created 596 total cycles, of which 4 are test cycles, 592 are scan cycles, 0 are dynamic timed cycles and 0 are dynamic cycles that are not timed.    
+      2 INFO (TVE-008): Created 296 total measures, of which 0 are PO measures and 296 are SO (Scan Out) measures.   
+      1 INFO (TVE-050):         TEST SEQUENCE COVERAGE ESTIMATE REPORT  
+      3 INFO (TVE-103): There was no specified TEST offset for this clock 'pin clk'.  A default clock offset of 8.000000 ns will be used.    
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------
+@file(run_modus_atpg.tcl) 85: puts "\n============================================="
+
+=============================================
+@file(run_modus_atpg.tcl) 86: puts "Modus Run Complete."
+Modus Run Complete.
+@file(run_modus_atpg.tcl) 87: puts "All reports and vectors are saved in: $RESULTS_DIR"
+All reports and vectors are saved in: .//results
+@file(run_modus_atpg.tcl) 88: puts "=============================================\n"
+=============================================
+
+@file(run_modus_atpg.tcl) 91: gui_open
+
+ERROR (TUI-809): gui_open invocation requires an explicit invocation of 'set_db workdir'to the current working directory.  [end TUI_809]
+
+#@ End verbose source run_modus_atpg.tcl
