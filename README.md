@@ -493,6 +493,7 @@ scan_out
 ### 👨‍🎓 About the Developer
 
 **Divyansh Tiwari**
+---
 Roll No.: 123EC0039
 
 Department of Electronics and Communication Engineering
