@@ -152,6 +152,28 @@ ATPG (Cadence Modus)
 |---------|------------|----------|-------|------|
 | chain1 | scan_in | scan_out | 296 | Muxed Scan |
 
+### Scan Chain Register Mapping
+
+The single scan chain (`chain1`) captures all 296 sequential elements in the following order:
+
+```text
+scan_in
+  │
+  ├─ bits  1–8   : A_reg[7:0]          (Accumulator)
+  ├─ bits  9–16  : IR_reg[7:0]         (Instruction Register)
+  ├─ bits 17–21  : PC_reg[4:0]         (Program Counter)
+  ├─ bits 22–29  : alu_b_reg[7:0]      (ALU Operand B)
+  ├─ bits 30–32  : alu_op_reg[2:0]     (ALU Opcode)
+  ├─ bit  33     : halted_reg          (Halt Flag)
+  ├─ bits 34–289 : memory_reg[0..31]   (32 × 8-bit RAM — 256 bits)
+  ├─ bits 290–294: next_pc_reg[4:0]    (Next PC)
+  └─ bits 295–296: state_reg[1:0]      (FSM State)
+  │
+scan_out
+```
+
+> **Observation:** 256 of the 296 scan bits (86.5%) correspond to the 32×8 memory array, which is the dominant contributor to chain length in this stored-program processor architecture.
+
 ---
 
 ## ⚙️ Synthesis Results
@@ -167,6 +189,114 @@ ATPG (Cadence Modus)
 | Synthesis Effort | High |
 
 > **Note:** Genus pruned 2 unused registers (`carry`, `zero`) during elaboration as they had no path to any primary output. This reduces sequential count but does not affect functional correctness.
+
+---
+
+## 📐 Area Analysis
+
+### Post-DFT Area Summary
+
+| Parameter | Value |
+|----------|-------|
+| Total Cell Count | 1,537 |
+| Total Cell Area | 14,496.905 µm² |
+| Net Area | 0.000 µm² (no wireload model) |
+| Wireload Model | Default (none) |
+
+### Area Breakdown by Type
+
+| Cell Type | Instances | Area (µm²) | Area % |
+|----------|-----------|-----------|--------|
+| Sequential (Scan FFs) | 296 | 7,537.967 | **52.0%** |
+| Logic Gates | 1,111 | 6,557.782 | 45.2% |
+| Inverters | 94 | 237.667 | 1.6% |
+| Buffers | 36 | 163.490 | 1.1% |
+| Physical Cells | 0 | 0.000 | 0.0% |
+| **Total** | **1,537** | **14,496.905** | **100%** |
+
+> **Note:** Sequential cells dominate area (52%) due to 296 scan flip-flops replacing standard DFFs, each adding a scan MUX overhead inherent to muxed-scan architecture.
+
+### Key Gate Instances (Top Contributors by Area)
+
+| Gate | Instances | Area (µm²) | Purpose |
+|------|-----------|-----------|---------|
+| SDFFRHQX1 | 253 | 6,319.358 | Scan FF (primary) |
+| MX2XL | 262 | 1,983.078 | 2:1 Mux (datapath) |
+| AOI222XL | 67 | 557.835 | AOI logic |
+| AOI221XL | 55 | 416.295 | AOI logic |
+| NAND2XL | 139 | 420.836 | NAND logic |
+| AOI22XL | 242 | 1,465.358 | AOI logic |
+| SDFFRHQX4 | 15 | 476.847 | Scan FF (high drive) |
+| SDFFRHQX2 | 14 | 360.284 | Scan FF (medium drive) |
+| SDFFSXHQX1 | 14 | 381.478 | Scan FF (set) |
+
+---
+
+## ⚡ Power Analysis
+
+### Post-DFT Power Summary
+
+| Category | Leakage (W) | Internal (W) | Switching (W) | Total (W) | Share |
+|---------|------------|-------------|--------------|----------|-------|
+| Register | 4.631e-05 | 3.031e-04 | 1.270e-05 | 3.621e-04 | **77.25%** |
+| Logic | 2.709e-05 | 3.952e-05 | 1.913e-05 | 8.575e-05 | 18.29% |
+| Clock | 0.000e+00 | 0.000e+00 | 2.092e-05 | 2.092e-05 | 4.46% |
+| Memory | 0.000e+00 | 0.000e+00 | 0.000e+00 | 0.000e+00 | 0.00% |
+| **Total** | **7.340e-05** | **3.426e-04** | **5.276e-05** | **4.688e-04** | **100%** |
+
+### Power Breakdown by Component
+
+| Power Type | Value (W) | Percentage |
+|-----------|----------|-----------|
+| Leakage Power | 7.340e-05 | 15.66% |
+| Internal Power | 3.426e-04 | 73.09% |
+| Switching Power | 5.276e-05 | 11.25% |
+| **Total Power** | **4.688e-04** | **100%** |
+
+> **Note:** Register logic dominates total power at 77.25%, consistent with a design where 52% of area is scan flip-flops. Internal (dynamic) power is the largest contributor at 73.09% of total power.
+
+---
+
+## ⏱️ Timing Analysis — Pre vs Post DFT
+
+### Pre-DFT Critical Path
+
+| Parameter | Value |
+|----------|-------|
+| Path | `halted_reg/CK` → `halted_out` |
+| Clock Edge (Capture) | 20,000 ps |
+| Output Delay | 5,000 ps |
+| Clock Uncertainty | 500 ps |
+| Required Time | 14,500 ps |
+| Data Path Delay | 690 ps |
+| **Slack (WNS)** | **+13,810 ps ✅ MET** |
+| Cell Used | DFFRHQX1 (standard DFF) |
+
+### Post-DFT Critical Path
+
+| Parameter | Value |
+|----------|-------|
+| Path | `PC_reg[4]/CK` → `PC_out[4]` |
+| Clock Edge (Capture) | 20,000 ps |
+| Output Delay | 5,000 ps |
+| Clock Uncertainty | 500 ps |
+| Required Time | 14,500 ps |
+| Data Path Delay | 640 ps |
+| **Slack (WNS)** | **+13,860 ps ✅ MET** |
+| Cell Used | SDFFRHQX2 (scan DFF, post-DFT) |
+
+### Pre vs Post DFT Comparison
+
+| Metric | Pre-DFT | Post-DFT | Delta | Status |
+|-------|--------|---------|-------|--------|
+| WNS (Worst Slack) | +13,810 ps | +13,860 ps | +50 ps | ✅ Improved |
+| TNS | 0 | 0 | — | ✅ No change |
+| Critical Path Delay | 690 ps | 640 ps | −50 ps | ✅ Improved |
+| Critical Path FF | DFFRHQX1 | SDFFRHQX2 | Scan FF | ✅ Replaced |
+| Timing Violations | 0 | 0 | — | ✅ Clean |
+| Clock Period | 20 ns | 20 ns | — | Unchanged |
+
+> **Observation:** DFT insertion caused **no timing degradation**. The post-DFT critical path actually shows a marginal improvement (+50 ps slack) because Genus re-optimised the netlist during scan replacement, selecting a higher-drive scan cell (`SDFFRHQX2`) for the PC register which reduced its output transition time.
 
 ---
 
@@ -188,6 +318,36 @@ ATPG (Cadence Modus)
 | Test Clock | clk_test (10 ns period) |
 | DFT Violations | 0 |
 | DFT Insertion Status | Successful |
+
+### DFT Rule Check Summary
+
+| Rule Category | Violations |
+|--------------|-----------|
+| Internally driven clock net | 0 |
+| Tied constant clock net | 0 |
+| Undriven clock net | 0 |
+| Conflicting async & clock net | 0 |
+| Misc. clock net | 0 |
+| Internally driven async net | 0 |
+| Tied active async net | 0 |
+| Undriven async net | 0 |
+| Misc. async net | 0 |
+| **Total DFT Violations** | **0** ✅ |
+
+### DFT Configuration
+
+| Parameter | Value |
+|----------|-------|
+| Scan Style | `muxed_scan` |
+| Shift Enable Signal | `scan_en` (active high) |
+| Test Mode Signal | `reset` (async set/reset, active low) |
+| Test Clock Source | `clk` |
+| Test Clock Domain | `clk_test` |
+| Test Clock Period | 10,000 ps |
+| Test Clock Edge | Rising |
+| Lock-up Element | Preferred level-sensitive |
+| Mix Clock Edges | Disabled |
+| Registers Passing DFT Rules | 296 / 296 (100%) |
 
 ---
 
@@ -248,15 +408,37 @@ ATPG (Cadence Modus)
 
 ---
 
+## 📋 Complete Design Summary — Pre vs Post DFT
+
+| Metric | Pre-DFT | Post-DFT | Change |
+|-------|--------|---------|--------|
+| Sequential Elements | 296 FFs | 296 Scan FFs | FF → SDFF |
+| Total Cell Count | ~1,537* | 1,537 | — |
+| Total Area | ~14,497 µm²* | 14,496.905 µm² | Negligible |
+| Sequential Area | — | 7,537.967 µm² | 52.0% of total |
+| Critical Path Delay | 690 ps | 640 ps | −7.2% |
+| WNS | +13,810 ps | +13,860 ps | +50 ps |
+| Timing Violations | 0 | 0 | None |
+| Total Power | — | 468.8 µW | — |
+| DFT Violations | N/A | 0 | — |
+| Scan Coverage | 0% | 100% | +100% |
+| ATPG Static Coverage | N/A | 100% | — |
+
+*Pre-DFT cell count and area are near-identical as scan replacement is in-place.
+
+---
+
 ## 📝 Technical Observations
 
 - The **8-bit processor** has a significantly larger scan chain (296 FFs) compared to simpler datapaths, reflecting the deep sequential state of a stored-program architecture.
+- **86.5% of the scan chain** (256/296 bits) is occupied by the 32×8 memory array, which highlights how on-chip RAM dominates testability overhead in accumulator-based architectures.
 - A **single muxed-scan chain** was sufficient to accommodate all 296 sequential elements.
 - The design achieved **zero DFT rule violations**, confirming structurally valid scan insertion with 100% flip-flop scan-replaceability.
 - ATPG execution achieved **100% static fault coverage** — all 18,338 stuck-at faults were fully detected.
 - **Zero redundant faults** were identified, demonstrating efficient and non-degenerate logic structure.
 - Dynamic fault coverage is inherently limited for complex sequential designs; improving it would require additional constrained-random or sequential ATPG techniques.
-- Timing analysis confirms substantial **positive slack (+13.8 ns)**, indicating that DFT insertion caused no timing violations.
+- Timing analysis confirms substantial **positive slack (+13.8 ns)**, indicating that DFT insertion caused no timing violations. Post-DFT slack marginally *improved* by 50 ps due to Genus re-optimisation during scan cell substitution.
+- **Internal power dominates** at 73.09% of total 468.8 µW, driven by the large scan register bank (77.25% of total power).
 - Two unused status registers (`carry`, `zero`) were optimized away by Genus, as they were not connected to any observable output — a common synthesis optimization for accumulator-based architectures.
 - The embedded demo program (`LOAD M[16] → ALU ADD → STORE M[18] → HALT`) pre-loaded into memory validates functional correctness of the instruction pipeline.
 
@@ -284,13 +466,14 @@ ATPG (Cadence Modus)
 │   └── processor_post_dft.sdc
 │
 ├── reports/
+│   ├── pre_dft_timing.rpt
 │   ├── post_dft_timing.rpt
 │   ├── post_dft_area.rpt
 │   ├── post_dft_power.rpt
 │   ├── post_dft_gates.rpt
 │   ├── dft_setup.rpt
+│   ├── dft_rules_check.rpt
 │   ├── scan_chains.rpt
-│   ├── post_dft_rules.rpt
 │   └── test_coverage_logic.rpt
 │
 ├── results/
@@ -323,6 +506,6 @@ Integrated Bachelor and Master of Technology
 
 ---
 
-© 2025 Divyansh Tiwari — All Rights Reserved
+© 2026 Divyansh Tiwari — All Rights Reserved
 
 </div>
