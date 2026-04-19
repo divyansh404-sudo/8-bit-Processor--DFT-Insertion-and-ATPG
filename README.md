@@ -606,6 +606,7 @@ The processor correctly executed the embedded test program: loaded operand A (10
 ### 👨‍🎓 About the Developer
 
 **Divyansh Tiwari**
+---
 Roll No.: 123EC0039
 
 Department of Electronics and Communication Engineering
