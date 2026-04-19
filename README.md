@@ -497,7 +497,7 @@ scan_out
 Roll No.: 123EC0039
 
 Department of Electronics and Communication Engineering
-Integrated Bachelor and Master of Technology
+Bachelor of Technology
 
 **Indian Institute of Information Technology Design and Manufacturing, Kurnool**
 
